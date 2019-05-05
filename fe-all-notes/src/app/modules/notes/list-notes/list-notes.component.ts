@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotesService } from '../notes/notes.service';
 
 @Component({
   selector: 'dk-list-notes',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListNotesComponent implements OnInit {
 
-  constructor() { }
+  notes: any[];
+
+  constructor(private notesService: NotesService) { }
 
   ngOnInit() {
+    this.notesService.getNotes().subscribe((notes) => {
+      this.notes = notes;
+    })
   }
 
 }

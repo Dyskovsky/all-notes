@@ -8,6 +8,7 @@ import { SingleNoteComponent } from './single-note/single-note.component';
   declarations: [ListNotesComponent, NewNoteComponent, SingleNoteComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ ListNotesComponent ],
 })
 export class NotesModule { }
