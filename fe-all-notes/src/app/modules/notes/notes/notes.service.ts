@@ -10,6 +10,6 @@ export class NotesService {
   constructor(private http: HttpClient) { }
 
   getNotes(): Observable<any[]>{
-    return this.http.get<any>('/notes');
+    return this.http.get<any>('/api/notes');
   }
 }
