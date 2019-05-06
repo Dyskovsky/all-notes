@@ -1,22 +1,15 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getNotes() {
-    return of([
-      {
-        title: 'First note',
-        body: 'This is note body',
-      }, {
-        title: 'Another note',
-        body: 'Some text',
-      },
-    ]);
+  getNotes(): Observable<any[]>{
+    return this.http.get<any>('/notes');
   }
 }

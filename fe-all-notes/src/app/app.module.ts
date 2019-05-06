@@ -1,9 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule }    from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule }         from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NotesModule } from './modules/notes/notes.module';
+import { AppComponent }     from './app.component';
+import { NotesModule }      from './modules/notes/notes.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { NotesModule } from './modules/notes/notes.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NotesModule,
   ],

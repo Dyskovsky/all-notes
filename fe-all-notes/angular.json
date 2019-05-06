@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fe-all-notes:build"
+            "browserTarget": "fe-all-notes:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
