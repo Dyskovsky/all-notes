@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query, NotFoundException } from '@nestjs/common';
 import { NoteDto } from './dto/note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdatedNoteDto as UpdateNoteDto } from './dto/update-note.dto';
@@ -26,7 +26,7 @@ export class NotesController {
     if (note) {
       return note;
     }
-    // TODO throw 404
+    throw new NotFoundException('Not Found', `id=${id}`);
   }
 
   @Post()
@@ -39,18 +39,16 @@ export class NotesController {
     const note = this.notesService.update(id, updatedNote);
     if (note) {
       return note;
-    } else {
-      return null;
-      // throw exception
     }
+    throw new NotFoundException('Not Found', `id=${id}`);
   }
 
   @Delete(':id')
   remove(@Param('id') id): void {
     if (this.notesService.remove(id)) {
       return;
-    } else {
-      // throw exception
     }
+    throw new NotFoundException('Not Found', `id=${id}`);
+    // TODO check response code
   }
 }

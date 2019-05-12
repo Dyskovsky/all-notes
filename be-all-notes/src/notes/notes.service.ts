@@ -32,15 +32,16 @@ export class NotesService {
 
   findOne(id: string): Note {
     const note = this.notes.find(note => note.id === id);
-    return note;
+    if (note) {
+      return note;
+    }
   }
 
   update(id, updateNote: UpdatedNoteDto): Note {
     const note = this.notes.find(n => n.id === id);
     if (note) {
-      Object.assign(note, updateNote);
+      return Object.assign(note, updateNote);
     }
-    return note;
   }
 
   remove(id: string): boolean {
@@ -48,8 +49,7 @@ export class NotesService {
     if (noteIndex !== -1) {
       this.notes.splice(noteIndex, 1);
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 }
