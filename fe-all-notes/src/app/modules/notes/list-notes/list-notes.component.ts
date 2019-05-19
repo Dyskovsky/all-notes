@@ -13,9 +13,18 @@ export class ListNotesComponent implements OnInit {
   constructor(private notesService: NotesService) { }
 
   ngOnInit() {
-    this.notesService.getNotes().subscribe((notes) => {
-      this.notes = notes;
-    })
+    this.getNotes();
   }
 
+  getNotes() {
+    this.notesService.getAll().subscribe((notes) => {
+      this.notes = notes;
+    });
+  }
+
+  delete(id: string) {
+    this.notesService.delete(id).subscribe(() => {
+      this.getNotes();
+    });
+  }
 }

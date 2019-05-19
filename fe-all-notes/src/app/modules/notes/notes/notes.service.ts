@@ -9,7 +9,23 @@ export class NotesService {
 
   constructor(private http: HttpClient) { }
 
-  getNotes(): Observable<any[]>{
-    return this.http.get<any>('/api/notes/');
+  getAll(): Observable<any[]>{
+    return this.http.get<any>('/api/notes');
+  }
+
+  getOne(id: string): Observable<any> {
+    return this.http.get<any>(`/api/notes/${id}`);
+  }
+
+  create(note: any): Observable<any> {
+    return this.http.post<any>('/api/notes', note);
+  }
+
+  update(id: string, note: any): Observable<any> {
+    return this.http.put<void>(`api/notes/${id}`, note);
+  }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`/api/notes/${id}`);
   }
 }

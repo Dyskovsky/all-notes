@@ -1,3 +1,11 @@
-<p>
-  single-note works!
-</p>
+<form [formGroup]="noteForm">
+  <label>
+    Title
+    <input formControlName="title">
+  </label>
+  <textarea formControlName="body">
+  </textarea>
+</form>
+
+<a routerLink="/">Back</a>
+<button (click)="save()">SAVE</button>

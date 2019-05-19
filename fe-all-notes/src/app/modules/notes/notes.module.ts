@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListNotesComponent } from './list-notes/list-notes.component';
-import { NewNoteComponent } from './new-note/new-note.component';
 import { SingleNoteComponent } from './single-note/single-note.component';
+import { NotesRoutingModule } from './notes-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ListNotesComponent, NewNoteComponent, SingleNoteComponent],
+  declarations: [ListNotesComponent, SingleNoteComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    NotesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  exports: [ ListNotesComponent ],
 })
 export class NotesModule { }

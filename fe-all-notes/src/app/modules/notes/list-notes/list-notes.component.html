@@ -1,8 +1,18 @@
+
+<a routerLink="create">Crete new</a>
+
 <ul *ngFor="let note of notes">
-  <div>
-    {{ note.title }}
-  </div>
-  <div>
-    {{ note.body }}
-  </div>
+  <li>
+    <div>
+      {{ note.id }}
+    </div>
+    <div>
+      {{ note.title }}
+    </div>
+    <div>
+      {{ note.body }}
+    </div>
+    <a [routerLink]="['edit', note.id]">Edit</a>
+    <button (click)="delete(note.id)">Delete</button>
+  </li>
 </ul>
