@@ -1,55 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { Note } from './interfaces/note.interface';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdatedNoteDto } from './dto/update-note.dto';
-
-let uniqueId = 0;
+import { InjectRepository } from '@nestjs/typeorm';
+import { Note } from './note.entity';
+import { MongoRepository } from 'typeorm';
 
 @Injectable()
 export class NotesService {
-  private readonly notes = [{
-    id: (++uniqueId).toString(),
-    title: 'First note',
-    body: 'This is note body',
-    type: 'text' as 'text',
-  }, {
-    id: (++uniqueId).toString(),
-    title: 'Another note',
-    body: 'Some text',
-    type: 'text' as 'text',
-  },
-  ];
+  constructor(@InjectRepository(Note) private readonly noteRepository: MongoRepository<Note>) { }
 
-  create(createNote: CreateNoteDto): Note {
-    const note = Object.assign(createNote, { id: (++uniqueId).toString() })
-    this.notes.push(note);
-    return note;
+  async create(createNote: CreateNoteDto): Promise<Note> {
+    const note = this.noteRepository.create(createNote)
+    return await this.noteRepository.save(note);
   }
 
-  findAll(): Note[] {
-    return this.notes;
+  async findAll(): Promise<Note[]> {
+    return await this.noteRepository.find();
   }
 
-  findOne(id: string): Note {
-    const note = this.notes.find(note => note.id === id);
+  async findOne(id: number): Promise<Note> {
+    return await this.noteRepository.findOne(id);
+  }
+
+  async update(id: number, updateNote: UpdatedNoteDto): Promise<Note> {
+    const note = await this.noteRepository.findOne(id);
+    this.noteRepository.merge(note, updateNote);
+    return await this.noteRepository.save(note);
+  }
+
+  async remove(id: number): Promise<Note> {
+    const note = await this.noteRepository.findOne(id);
     if (note) {
-      return note;
+      return await this.noteRepository.remove(note);
+    } else {
+      return Promise.resolve(null);
     }
-  }
-
-  update(id, updateNote: UpdatedNoteDto): Note {
-    const note = this.notes.find(n => n.id === id);
-    if (note) {
-      return Object.assign(note, updateNote);
-    }
-  }
-
-  remove(id: string): boolean {
-    const noteIndex = this.notes.findIndex(note => note.id === id);
-    if (noteIndex !== -1) {
-      this.notes.splice(noteIndex, 1);
-      return true;
-    }
-    return false;
   }
 }

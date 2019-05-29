@@ -15,14 +15,13 @@ export class NotesController {
   constructor(private readonly notesService: NotesService) { }
 
   @Get()
-  getAll(@Query() query: ListAllEntities): NoteDto[] {
-    console.log('Query is: ', query);
+  getAll(@Query() query: ListAllEntities): Promise<NoteDto[]> {
     return this.notesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id): NoteDto {
-    const note = this.notesService.findOne(id);
+  async findOne(@Param('id') id): Promise<NoteDto> {
+    const note = await this.notesService.findOne(id);
     if (note) {
       return note;
     }
@@ -30,13 +29,13 @@ export class NotesController {
   }
 
   @Post()
-  create(@Body() createNote: CreateNoteDto): NoteDto {
+  create(@Body() createNote: CreateNoteDto): Promise<NoteDto> {
     return this.notesService.create(createNote);
   }
 
   @Put(':id')
-  update(@Param('id') id, @Body() updatedNote: UpdateNoteDto): NoteDto {
-    const note = this.notesService.update(id, updatedNote);
+  async update(@Param('id') id, @Body() updatedNote: UpdateNoteDto): Promise<NoteDto> {
+    const note = await this.notesService.update(id, updatedNote);
     if (note) {
       return note;
     }
@@ -44,11 +43,11 @@ export class NotesController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id): void {
-    if (this.notesService.remove(id)) {
-      return;
+  async remove(@Param('id') id): Promise<NoteDto> {
+    const note = await this.notesService.remove(id);
+    if (note) {
+      return note;
     }
     throw new NotFoundException('Not Found', `id=${id}`);
-    // TODO check response code
   }
 }
