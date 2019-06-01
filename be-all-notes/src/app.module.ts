@@ -7,11 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // TODO SSL connection do db
 
 @Module({
-  imports: [
-    NotesModule,
-    TypeOrmModule.forRoot()
-  ],
+  imports: [NotesModule, TypeOrmModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

@@ -3,13 +3,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotesService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<any[]>{
+  getAll(): Observable<any[]> {
     return this.http.get<any>('/api/notes');
   }
 

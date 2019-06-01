@@ -1,4 +1,4 @@
 export class ListAllEntities {
-    size: number;
-    page: number;
+  size: number;
+  page: number;
 }

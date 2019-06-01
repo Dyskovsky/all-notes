@@ -7,10 +7,13 @@ import { MongoRepository } from 'typeorm';
 
 @Injectable()
 export class NotesService {
-  constructor(@InjectRepository(Note) private readonly noteRepository: MongoRepository<Note>) { }
+  constructor(
+    @InjectRepository(Note)
+    private readonly noteRepository: MongoRepository<Note>,
+  ) {}
 
   async create(createNote: CreateNoteDto): Promise<Note> {
-    const note = this.noteRepository.create(createNote)
+    const note = this.noteRepository.create(createNote);
     return await this.noteRepository.save(note);
   }
 

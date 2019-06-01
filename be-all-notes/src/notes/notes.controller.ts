@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, Query, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  Query,
+  NotFoundException,
+} from '@nestjs/common';
 import { NoteDto } from './dto/note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdatedNoteDto as UpdateNoteDto } from './dto/update-note.dto';
@@ -12,7 +22,7 @@ import { NotesService } from './notes.service';
 
 @Controller('notes')
 export class NotesController {
-  constructor(private readonly notesService: NotesService) { }
+  constructor(private readonly notesService: NotesService) {}
 
   @Get()
   getAll(@Query() query: ListAllEntities): Promise<NoteDto[]> {
@@ -34,7 +44,10 @@ export class NotesController {
   }
 
   @Put(':id')
-  async update(@Param('id') id, @Body() updatedNote: UpdateNoteDto): Promise<NoteDto> {
+  async update(
+    @Param('id') id,
+    @Body() updatedNote: UpdateNoteDto,
+  ): Promise<NoteDto> {
     const note = await this.notesService.update(id, updatedNote);
     if (note) {
       return note;

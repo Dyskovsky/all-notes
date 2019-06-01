@@ -8,13 +8,17 @@ import { of } from 'rxjs';
 @Component({
   selector: 'dk-single-note',
   templateUrl: './single-note.component.html',
-  styleUrls: ['./single-note.component.scss']
+  styleUrls: ['./single-note.component.scss'],
 })
 export class SingleNoteComponent implements OnInit {
   noteForm: FormGroup;
   noteId: string;
 
-  constructor(private notesService: NotesService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(
+    private notesService: NotesService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.noteForm = this.formBuilder.group({
@@ -22,22 +26,24 @@ export class SingleNoteComponent implements OnInit {
       body: '',
     });
 
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        if (params.has('id')) {
-          this.noteId = params.get('id');
-          return this.notesService.getOne(this.noteId);
-        } else {
-          return of({
-            title: '',
-            body: '',
-          });
-        }
-      }
-    )).subscribe(note => {
-      this.noteForm.get('title').setValue(note.title);
-      this.noteForm.get('body').setValue(note.body);
-    });
+    this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) => {
+          if (params.has('id')) {
+            this.noteId = params.get('id');
+            return this.notesService.getOne(this.noteId);
+          } else {
+            return of({
+              title: '',
+              body: '',
+            });
+          }
+        }),
+      )
+      .subscribe(note => {
+        this.noteForm.get('title').setValue(note.title);
+        this.noteForm.get('body').setValue(note.body);
+      });
   }
 
   save() {
@@ -45,10 +51,9 @@ export class SingleNoteComponent implements OnInit {
     if (this.noteId) {
       this.notesService.update(this.noteId, note).subscribe();
     } else {
-      this.notesService.create(note).subscribe((createdNote) => {
+      this.notesService.create(note).subscribe(createdNote => {
         this.noteId = createdNote.id;
       });
     }
   }
-
 }
