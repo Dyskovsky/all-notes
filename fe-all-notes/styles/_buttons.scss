@@ -1,0 +1,145 @@
+$border-radius: 2px;
+$border-width: 1px;
+$animation-time: 0.3s;
+$clr-text: #e8e8e8;
+$clr-text-hover: #f8f8f8;
+
+@mixin custom-button($color) {
+  background-image: linear-gradient(to right, $color, lighten($color, 10%));
+
+  &:not([disabled])::before {
+    @include custom-button-hover($color);
+  }
+}
+
+@mixin custom-button-hover($color) {
+  $used-color-in: adjust-color($color, $lightness: 15%);
+  $used-color-out: adjust-color($color, $lightness: 5%);
+  background-image: radial-gradient($used-color-in, $used-color-out);
+}
+
+@mixin custom-button-outlined($color) {
+  color: $color;
+  border: $border-width solid $color;
+
+  &:not([disabled])::before {
+    @include custom-button-hover($color);
+  }
+
+  &:not([disabled]):hover {
+    color: #f8f8f8;
+  }
+}
+
+.btn {
+  padding: 12px 15px;
+  border: 0;
+  border-radius: $border-radius;
+  text-decoration: none;
+  box-shadow: none;
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: $clr-text;
+  min-width: 120px;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  transition: border $animation-time, color $animation-time;
+  position: relative;
+  z-index: 1;
+
+  &:not([disabled]):hover {
+    cursor: pointer;
+    color: $clr-text-hover;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  transition: opacity $animation-time linear;
+  opacity: 0;
+  border: $border-width solid transparent;
+  border-radius: $border-radius -1;
+}
+
+.btn.outlined {
+  background: transparent;
+}
+
+.btn.default {
+  @include custom-button-outlined($clr-default);
+
+  &:not([disabled])::before {
+    background: transparent;
+  }
+  &:not([disabled]):hover {
+    color: darken($clr-default, 15%);
+  }
+}
+
+.btn.primary:not(.outlined) {
+  @include custom-button($clr-primary);
+}
+
+.btn.primary.outlined {
+  @include custom-button-outlined($clr-primary);
+}
+
+.btn.info:not(.outlined) {
+  @include custom-button($clr-info);
+}
+
+.btn.info.outlined {
+  @include custom-button-outlined($clr-info);
+}
+
+.btn.success:not(.outlined) {
+  @include custom-button($clr-success);
+}
+
+.btn.success.outlined {
+  @include custom-button-outlined($clr-success);
+}
+
+.btn.link:not(.outlined) {
+  @include custom-button($clr-link);
+}
+
+.btn.link.outlined {
+  @include custom-button-outlined($clr-link);
+}
+
+.btn.danger:not(.outlined) {
+  @include custom-button($clr-danger);
+}
+
+.btn.danger.outlined {
+  @include custom-button-outlined($clr-danger);
+}
+
+.btn.warning:not(.outlined) {
+  @include custom-button($clr-warning);
+}
+
+.btn.warning.outlined {
+  @include custom-button-outlined($clr-warning);
+}
+
+.btn[disabled] {
+  opacity: 0.65;
+
+  &:hover {
+    cursor: default;
+  }
+}

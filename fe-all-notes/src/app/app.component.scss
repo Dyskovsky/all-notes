@@ -1,7 +1,9 @@
+@import "~styles/colors";
+
 .topbar {
-    position: sticky;
-    top: 0;
-    height: 50px;
-    background: burlywood;
-    width: 100%;
+  position: sticky;
+  top: 0;
+  height: 50px;
+  background: $clr-topbar;
+  width: 100%;
 }
