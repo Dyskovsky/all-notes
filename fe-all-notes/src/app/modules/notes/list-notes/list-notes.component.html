@@ -1,17 +1,16 @@
-<a class="btn primary m" routerLink="create">Create New</a>
+<div class="create-new-container">
+  <a class="btn primary m" routerLink="create">Create New</a>
+</div>
 
-<ul *ngFor="let note of notes">
-  <li>
-    <div>
-      {{ note.id }}
-    </div>
-    <div>
+<ul *ngFor="let note of notes" class="notes-container">
+  <li class="note">
+    <h4 class="note-title">
       {{ note.title }}
-    </div>
-    <div>
+    </h4>
+    <div class="note-body-scrap">
       {{ note.body }}
     </div>
-    <div>
+    <div class="note-actions">
       <a [routerLink]="['edit', note.id]" class="btn default m">Edit</a>
       <button (click)="delete(note.id)" class="btn danger m">Delete</button>
     </div>

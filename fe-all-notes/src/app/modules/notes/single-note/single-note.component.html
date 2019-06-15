@@ -1,11 +1,12 @@
-<form [formGroup]="noteForm">
-  <label>
+<form [formGroup]="noteForm" class="note-container" (submit)="save()">
+  <label class="note-title">
     Title
-    <input formControlName="title">
+    <input formControlName="title" />
   </label>
-  <textarea formControlName="body">
-  </textarea>
-</form>
+  <textarea formControlName="body" rows="15" class="note-body"> </textarea>
 
-<a  class="btn default m" routerLink="/">Back</a>
-<button class="btn primary m" (click)="save()">Save</button>
+  <footer class="note-menu">
+    <a class="btn default m" routerLink="/">Back</a>
+    <button class="btn success" type="submit">Save</button>
+  </footer>
+</form>
