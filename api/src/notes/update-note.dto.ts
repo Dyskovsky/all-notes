@@ -1,4 +1,4 @@
-export class UpdatedNoteDto {
+export class UpdateNoteDto {
   readonly title: string;
   readonly body: string;
 }

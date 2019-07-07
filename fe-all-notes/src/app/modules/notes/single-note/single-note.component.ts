@@ -4,6 +4,7 @@ import { NotesService } from '../notes/notes.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { UpdateNoteDto, CreateNoteDto } from 'api';
 
 @Component({
   selector: 'dk-single-note',
@@ -47,12 +48,21 @@ export class SingleNoteComponent implements OnInit {
   }
 
   save() {
-    const note = this.noteForm.getRawValue();
+    const { title, body } = this.noteForm.getRawValue();
     if (this.noteId) {
-      this.notesService.update(this.noteId, note).subscribe();
+      const updateNoteDto: UpdateNoteDto = {
+        title,
+        body,
+      };
+      this.notesService.update(this.noteId, updateNoteDto).subscribe();
     } else {
-      this.notesService.create(note).subscribe(createdNote => {
-        this.noteId = createdNote.id;
+      const createNoteDto: CreateNoteDto = {
+        title,
+        body,
+        type: 'text',
+      };
+      this.notesService.create(createNoteDto).subscribe(createdNote => {
+        this.noteId = createdNote.id.toString();
       });
     }
   }

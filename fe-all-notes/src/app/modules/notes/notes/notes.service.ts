@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { NoteDto, CreateNoteDto, UpdateNoteDto } from 'api';
 
 @Injectable({
   providedIn: 'root',
@@ -8,20 +9,20 @@ import { HttpClient } from '@angular/common/http';
 export class NotesService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any[]> {
+  getAll(): Observable<NoteDto[]> {
     return this.http.get<any>('/api/notes');
   }
 
-  getOne(id: string): Observable<any> {
+  getOne(id: string): Observable<NoteDto> {
     return this.http.get<any>(`/api/notes/${id}`);
   }
 
-  create(note: any): Observable<any> {
+  create(note: CreateNoteDto): Observable<NoteDto> {
     return this.http.post<any>('/api/notes', note);
   }
 
-  update(id: string, note: any): Observable<any> {
-    return this.http.put<void>(`api/notes/${id}`, note);
+  update(id: string, note: UpdateNoteDto): Observable<NoteDto> {
+    return this.http.put<NoteDto>(`api/notes/${id}`, note);
   }
 
   delete(id: string): Observable<void> {

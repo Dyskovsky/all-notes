@@ -9,11 +9,8 @@ import {
   Query,
   NotFoundException,
 } from '@nestjs/common';
-import { NoteDto } from './dto/note.dto';
-import { CreateNoteDto } from './dto/create-note.dto';
-import { UpdatedNoteDto as UpdateNoteDto } from './dto/update-note.dto';
-import { ListAllEntities } from './dto/common';
 import { NotesService } from './notes.service';
+import { ListAllEntities, NoteDto, CreateNoteDto, UpdateNoteDto } from 'api';
 
 // TODO add logging middleware
 // slug instead of id?

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../notes/notes.service';
+import { NoteDto } from 'api';
 
 @Component({
   selector: 'dk-list-notes',
@@ -7,7 +8,7 @@ import { NotesService } from '../notes/notes.service';
   styleUrls: ['./list-notes.component.scss'],
 })
 export class ListNotesComponent implements OnInit {
-  notes: any[];
+  notes: NoteDto[];
 
   constructor(private notesService: NotesService) {}
 
