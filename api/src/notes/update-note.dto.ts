@@ -1,4 +1,4 @@
-export class UpdateNoteDto {
+export interface UpdateNoteDto {
   readonly title: string;
   readonly body: string;
 }

@@ -1,4 +1,4 @@
-export class NoteDto {
+export interface NoteDto {
   readonly id: number;
   readonly title: string;
   readonly body: string;
