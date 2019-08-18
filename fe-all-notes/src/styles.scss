@@ -1,12 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~styles/mixins";
 @import "~styles/variables";
 @import "~styles/colors";
 @import "~styles/fonts";
 @import "~styles/utils";
 @import "~styles/buttons";
+@import "~styles/card";
 
 body {
   margin: 0;
-  font-family: $text-font;
-  color: #555;
+  font-family: $font-text;
+  background-image: repeating-linear-gradient(
+    45deg,
+    $clr-page-bg,
+    lighten($clr-page-bg, 2%) 20%,
+    darken($clr-page-bg, 5%) 20%
+  );
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
 }

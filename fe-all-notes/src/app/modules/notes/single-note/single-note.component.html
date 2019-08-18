@@ -1,12 +1,19 @@
-<form [formGroup]="noteForm" class="note-container" (submit)="save()">
-  <label class="note-title">
-    Title
-    <input formControlName="title" />
-  </label>
-  <textarea formControlName="body" rows="15" class="note-body"> </textarea>
-
-  <footer class="note-menu">
-    <a class="btn default m" routerLink="/">Back</a>
-    <button class="btn success" type="submit">Save</button>
-  </footer>
+<form [formGroup]="noteForm" (submit)="save()">
+  <div class="card">
+    <header class="card-header">
+        <input
+          formControlName="title"
+          class="card-title note-title"
+          type="text"
+          placeholder="Note title"
+        />
+    </header>
+    <div class="card-content">
+      <textarea formControlName="body" rows="15" class="note-body"> </textarea>
+    </div>
+    <footer class="card-footer">
+      <a class="btn default m-r" routerLink="/">Back</a>
+      <button class="btn success" type="submit">Save</button>
+    </footer>
+  </div>
 </form>

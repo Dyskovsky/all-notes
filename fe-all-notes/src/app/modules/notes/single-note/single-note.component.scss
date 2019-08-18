@@ -1,34 +1,15 @@
-@import "~styles/variables";
-@import "~styles/colors";
-
-.note-container {
-  display: flex;
-  flex-direction: column;
-  margin: 30px;
-}
-
 .note-body {
-  font-family: $text-font;
-  padding: 15px 30px;
-  border: solid $clr-border 1px;
-  border-radius: 3px;
-  margin-bottom: 20px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 .note-title {
-  margin: 10px 0 30px;
-  display: flex;
-  align-items: baseline;
-
-  & > input {
-    margin-left: 15px;
-    flex-grow: 1;
-    padding: 10px 20px;
-    border: solid $clr-border 1px;
-    border-radius: 3px;
-  }
-}
-
-.note-menu {
-  text-align: right;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  flex-grow: 1;
 }

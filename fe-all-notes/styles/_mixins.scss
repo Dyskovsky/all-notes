@@ -1,0 +1,5 @@
+@mixin clr-soft-radial-gradient($color) {
+  $used-color-in: adjust-color($color, $lightness: 15%);
+  $used-color-out: adjust-color($color, $lightness: 5%);
+  background-image: radial-gradient($used-color-in, $used-color-out);
+}

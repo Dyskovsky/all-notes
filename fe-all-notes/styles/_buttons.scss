@@ -1,21 +1,15 @@
 $border-radius: 2px;
 $border-width: 1px;
 $animation-time: 0.3s;
-$clr-text: #e8e8e8;
-$clr-text-hover: #f8f8f8;
+$clr-btn-text: #e8e8e8;
+$clr-btn-text-hover: #f8f8f8;
 
 @mixin custom-button($color) {
   background-image: linear-gradient(to right, $color, lighten($color, 10%));
 
   &:not([disabled])::before {
-    @include custom-button-hover($color);
+    @include clr-soft-radial-gradient($color);
   }
-}
-
-@mixin custom-button-hover($color) {
-  $used-color-in: adjust-color($color, $lightness: 15%);
-  $used-color-out: adjust-color($color, $lightness: 5%);
-  background-image: radial-gradient($used-color-in, $used-color-out);
 }
 
 @mixin custom-button-outlined($color) {
@@ -23,7 +17,7 @@ $clr-text-hover: #f8f8f8;
   border: $border-width solid $color;
 
   &:not([disabled])::before {
-    @include custom-button-hover($color);
+    @include clr-soft-radial-gradient($color);
   }
 
   &:not([disabled]):hover {
@@ -37,10 +31,10 @@ $clr-text-hover: #f8f8f8;
   border-radius: $border-radius;
   text-decoration: none;
   box-shadow: none;
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: $font-primary;
   font-size: 16px;
   font-weight: 600;
-  color: $clr-text;
+  color: $clr-btn-text;
   min-width: 120px;
   display: inline-block;
   box-sizing: border-box;
@@ -51,7 +45,7 @@ $clr-text-hover: #f8f8f8;
 
   &:not([disabled]):hover {
     cursor: pointer;
-    color: $clr-text-hover;
+    color: $clr-btn-text-hover;
   }
 
   &:hover::before {
@@ -78,14 +72,8 @@ $clr-text-hover: #f8f8f8;
 }
 
 .btn.default {
-  @include custom-button-outlined($clr-default);
+  @include custom-button($clr-default);
 
-  &:not([disabled])::before {
-    background: transparent;
-  }
-  &:not([disabled]):hover {
-    color: darken($clr-default, 15%);
-  }
 }
 
 .btn.primary:not(.outlined) {

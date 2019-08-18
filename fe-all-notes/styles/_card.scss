@@ -1,0 +1,33 @@
+$border-radius: 4px;
+$horizontal-padding: 30px;
+
+.card {
+  @include clr-soft-radial-gradient($clr-primary);
+  border-radius: $border-radius;
+  color: $clr-text-inverse;
+  margin: 20px;
+  box-shadow: 5px 5px 5px 0px $clr-shadow;
+}
+
+.card-header {
+  padding: 10px $horizontal-padding;
+  display: flex;
+  align-items: baseline;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0 5px;
+}
+
+.card-footer {
+  padding: 10px $horizontal-padding;
+  text-align: right;
+}
+
+.card-content {
+  padding: 20px $horizontal-padding;
+  background: $clr-content-bg;
+  color: $clr-text;
+}

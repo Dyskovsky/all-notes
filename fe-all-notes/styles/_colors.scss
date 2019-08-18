@@ -1,11 +1,16 @@
-$clr-topbar: burlywood;
-
-$clr-border: #b1b1b1;
-
 $clr-default: #929292;
-$clr-primary: #d99134;
+$clr-primary: #b47420;
 $clr-info: #078ffe;
 $clr-success: #31b137;
 $clr-warning: rgb(252, 140, 49);
 $clr-danger: #ed3131;
 $clr-link: #3273dc;
+
+$clr-content-bg: #f2e7d5;
+$clr-shadow: rgba(0, 0, 0, 0.5);
+
+$clr-text: #333;
+$clr-text-inverse: $clr-content-bg;
+
+$clr-topbar: $clr-primary;
+$clr-page-bg: #472800;

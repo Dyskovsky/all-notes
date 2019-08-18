@@ -1,7 +1,7 @@
 @import "~styles/colors";
 
 .create-new-container {
-  margin: 20px 30px;
+  margin: 20px;
   text-align: right;
 }
 
@@ -9,26 +9,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 20px;
 }
 
 .notes-container {
   list-style: none;
   padding: 0;
-}
-
-.note {
-  border-bottom: solid $clr-border 1px;
-  padding: 10px 30px;
-}
-
-.note-title {
-  font-size: 18px;
-  font-weight: 600px;
-  margin: 10px 0;
-  color: $clr-primary;
-}
-
-.note-actions {
-  text-align: right;
 }
