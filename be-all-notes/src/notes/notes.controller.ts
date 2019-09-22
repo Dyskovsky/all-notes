@@ -21,10 +21,12 @@ import {
 } from '@nestjs/swagger';
 import { ListAllEntities } from 'api';
 import { Note, CreateNote, UpdateNote } from './classes';
-import { ErrorResponse } from 'src/models/error-response';
+import { ErrorResponse } from '../models';
 
 // TODO add logging middleware
 // ListAllEntities <-- conver to number
+// TODO toast on remove/create/save note
+// TODO sorting/ the new one shoudl be on top
 
 @ApiUseTags('notes')
 @Controller('notes')

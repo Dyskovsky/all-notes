@@ -5,13 +5,13 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es2018",
     "sourceMap": true,
-    "outDir": "../dist",
+    "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "api": ["../dist/api"]
+      "api": ["../../dist/api"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
