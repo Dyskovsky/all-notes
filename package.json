@@ -2,7 +2,7 @@
   "name": "all-notes",
   "version": "0.0.1",
   "scripts": {
-    "prestart": "cd api && npm install && npm run build && cd ../fe-all-notes && npm install && npm run build && cd ../be-all-notes && npm install",
+    "prestart": "cd api && npm install && npm run build && npm pack && cd ../fe-all-notes && npm install && npm run build && cd ../be-all-notes && npm install",
     "start": "cd be-all-notes && npm run start:prod"
   }
 }
