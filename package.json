@@ -1,8 +1,11 @@
 {
   "name": "all-notes",
   "version": "0.0.1",
+  "engines": {
+    "node": "10.15.3"
+  },
   "scripts": {
-    "prestart": "cd api && npm install && npm run build && npm pack && cd ../fe-all-notes && npm install && npm run build && cd ../be-all-notes && npm install",
+    "build": "cd api && npm install && npm run build && npm pack && cd ../fe-all-notes && npm install && npm run build && cd ../be-all-notes && npm install",
     "start": "cd be-all-notes && npm run start:prod"
   }
 }
