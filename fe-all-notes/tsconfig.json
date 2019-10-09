@@ -16,5 +16,9 @@
     "paths": {
       "api": ["../dist/api"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }
