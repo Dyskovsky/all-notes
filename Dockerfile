@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 
 # only copy the package.json file. This allows us to take advantage of cached Docker layers.
 COPY ./api/package*.json ./api/
-RUN cd ./api/ && npm ci --only=production
+RUN cd ./api/ && npm install
 COPY ./api/ ./api/
 RUN cd ./api/ && npm run build
 RUN cd ./api && npm pack
@@ -37,7 +37,7 @@ RUN cd ./api && npm pack
 ### Build Frontend
 
 COPY ./fe-all-notes/package.json ./fe-all-notes/
-RUN cd ./fe-all-notes && npm ci --only=production
+RUN cd ./fe-all-notes && npm install
 COPY ./fe-all-notes/ ./fe-all-notes/
 RUN cd ./fe-all-notes && npm run build
 # remove source code
@@ -45,8 +45,8 @@ RUN cd ./fe-all-notes && npm run build
 
 ### Build Backend
 
-COPY ./be-all-notes/package*.json ./be-all-notes/
-RUN cd ./be-all-notes/ && npm ci --only=production
+COPY ./be-all-notes/package.json ./be-all-notes/
+RUN cd ./be-all-notes/ && npm install
 COPY ./be-all-notes/ ./be-all-notes/
 RUN cd ./be-all-notes && npm run build
 # remove source code
