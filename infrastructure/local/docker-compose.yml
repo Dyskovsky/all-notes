@@ -1,14 +1,35 @@
-version : '3'
-services :
+version: "3"
+services:
   mongo:
     image: mongo:4.1.11
     restart: unless-stopped
     ports:
-    - 27017:27017
+      - 27017:27017 # required to access from local computer
     volumes:
-    - data:/data/db
-    - mongo-config:/data/configdb
+      - data:/data/db
+      - mongo-config:/data/configdb
+    networks:
+      - all-notes-network
+
+  all-notes:
+    image: pjo/all-notes:latest
+
+    # or instead of image: -> build: ../../
+
+    environment:
+      - TYPEORM_CONNECTION=mongodb
+      - TYPEORM_HOST=mongo
+      - TYPEORM_DATABASE=notes
+      - TYPEORM_PORT=27017
+      - TYPEORM_ENTITIES=be-all-notes/dist/**/*.entity.js
+    ports:
+      - 3000:3000
+    networks:
+      - all-notes-network
 
 volumes:
   data:
   mongo-config:
+
+networks:
+  all-notes-network:
