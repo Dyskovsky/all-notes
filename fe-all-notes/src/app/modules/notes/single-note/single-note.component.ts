@@ -5,6 +5,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UpdateNoteDto, CreateNoteDto } from 'api';
+import { ToastService } from '../../shared/toast/toast.service';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'dk-single-note',
@@ -19,6 +21,9 @@ export class SingleNoteComponent implements OnInit {
     private notesService: NotesService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private toastService: ToastService,
+    private overlay: Overlay,
+
   ) {}
 
   ngOnInit() {
@@ -48,6 +53,8 @@ export class SingleNoteComponent implements OnInit {
   }
 
   save() {
+    this.toastService.success('sukces', 'kliknales buttona');
+
     const { title, body } = this.noteForm.getRawValue();
     if (this.noteId) {
       const updateNoteDto: UpdateNoteDto = {
