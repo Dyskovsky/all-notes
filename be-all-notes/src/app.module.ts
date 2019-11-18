@@ -1,14 +1,13 @@
 import { join } from 'path';
 
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
-
-// TODO SSL connection do db
+import { AuthenticationMiddleware } from './common/authentication.middleware';
 
 @Module({
   imports: [
@@ -21,4 +20,10 @@ import { NotesModule } from './notes/notes.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  public configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthenticationMiddleware)
+      .forRoutes({ path: '/notes', method: RequestMethod.POST });
+  }
+}

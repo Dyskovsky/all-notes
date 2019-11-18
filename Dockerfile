@@ -7,8 +7,10 @@
 # TODO check othe versions like alpine, jessie, nuster-slim
 # TODO https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md
 # TODO http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
+# TODO https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 # TODO check if node_modules are not copied
-# TODO dd more files to dockerignore
+# TODO Add more files to dockerignore
+# TODO NODE_ENV=production npm start
 
 # WARNING! Your password will be stored unencrypted in /home/dyskovsky/.docker/config.json.
 # Configure a credential helper to remove this warning. See

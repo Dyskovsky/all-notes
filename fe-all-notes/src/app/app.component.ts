@@ -1,10 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'dk-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'fe-all-notes';
+
+  constructor(private auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.localAuthSetup();
+    this.auth.handleAuthCallback();
+  }
+
+  get loggedIn(): boolean {
+    return this.auth.loggedIn;
+  }
+
+  login() {
+    return this.auth.login();
+  }
+
+  logout() {
+    return this.auth.logout();
+  }
+
+  profile$() {
+    return this.auth.userProfile$;
+  }
 }

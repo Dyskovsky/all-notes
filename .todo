@@ -28,3 +28,40 @@ https://www.ngxs.io/community/projects
 https://github.com/gothinkster/angular-realworld-example-app
 modules and utilities https://github.com/golevelup/nestjs
 NODE_PATH is an environment variable node uses for pretty much the same purpose TypeScript uses “baseUrl”: it looks for additional node_modules inside the directory specified by NODE_PATH
+TODO: create *d.ts files instead of *ts in API (investigation) @types package?
+TODO: one package.json for all projects (investigation)
+TODO: check vs code workspaces (debugger config and recommended extensions)
+TODO: create md notes https://www.npmjs.com/package/markdown-loader
+TODO: public directory
+TODO: swaggerConfig.json
+TODO: google analytics
+
+// authentication
+TODO: password should be hashed (like bcrypt library)
+TODO: don't use === for checking password
+TODO: rate limiting
+
+TODO: alt + click - insert cursor (double clik to select word)
+
+// ngrx
+TODO: https://medium.com/swlh/ngrx-data-will-change-your-life-8528736e4fc0
+
+
+// security
+https://nvd.nist.gov/
+https://cve.mitre.org/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+https://www.owasp.org
+
+db
+https://aws.amazon.com/dynamodb/
+TODO SSL connection do db
+
+
+// other
+https://foalts.gitbook.io // framework
+
+// npm-run-all np. "dev": "npm-run-all --parallel start server"
+
+
+
