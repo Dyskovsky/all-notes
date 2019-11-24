@@ -6,7 +6,6 @@ import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UpdateNoteDto, CreateNoteDto } from 'api';
 import { ToastService } from '../../shared/toast/toast.service';
-import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'dk-single-note',
@@ -22,8 +21,6 @@ export class SingleNoteComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private toastService: ToastService,
-    private overlay: Overlay,
-
   ) {}
 
   ngOnInit() {
