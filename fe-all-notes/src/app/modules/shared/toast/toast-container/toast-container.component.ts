@@ -13,4 +13,8 @@ export class ToastContainerComponent {
   public toastDatas$: Observable<ToastData[]> = this.toastService.getToasts();
 
   constructor(public toastService: ToastService) { }
+
+  public handleRemove(toastData: ToastData): void {
+    this.toastService.removeToast(toastData);
+  }
 }

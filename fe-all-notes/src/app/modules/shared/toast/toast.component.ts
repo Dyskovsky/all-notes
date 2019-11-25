@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ToastData } from './toast-data.interface';
 
 @Component({
@@ -8,4 +8,6 @@ import { ToastData } from './toast-data.interface';
 })
 export class ToastComponent {
   @Input() public toastData: ToastData;
+
+  @Output() public remove = new EventEmitter<ToastData>();
 }

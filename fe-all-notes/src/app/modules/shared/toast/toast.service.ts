@@ -9,13 +9,24 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ToastService {
     private toasts$ = new BehaviorSubject<ToastData[]>([]);
+    private readonly toastVisibilityTimeout = 5000;
 
+  // TODO shoulnt be public
   public getToasts(): Observable<ToastData[]> {
     return this.toasts$.asObservable();
   }
 
+  // TODO shoulnt be public
+  public removeToast(toastDataToRemove: ToastData): void {
+    const toasts = this.toasts$.getValue().filter(toastData => toastData !== toastDataToRemove);
+    this.toasts$.next(toasts);
+  }
+
   public success(toastData: ToastData): void {
     this.toasts$.next([...this.toasts$.getValue(), toastData]);
+    setTimeout(() => {
+      this.removeToast(toastData);
+    }, this.toastVisibilityTimeout);
   }
 
   public info(toastData: ToastData): void {

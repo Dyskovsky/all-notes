@@ -6,6 +6,9 @@
     <div>
       {{ toastData.body }}
     </div>
+    <button (click)="remove.emit(toastData)">
+      Remove
+    </button>
   </div>
 </ng-container>
 
