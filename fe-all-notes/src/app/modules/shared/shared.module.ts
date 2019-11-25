@@ -5,7 +5,7 @@ import { ToastModule } from './toast/toast.module';
 @NgModule({
   imports: [
     CommonModule,
-    ToastModule,
+    ToastModule.forRoot({ timeout: 3000 }),
   ],
   exports: [
     ToastModule,

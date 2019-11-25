@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from './toast.component';
 import {OverlayModule } from '@angular/cdk/overlay';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 import { ToastContainerService } from './toast-container/toast-container.service';
+import { ToastConfig } from './toast-config.interface';
+import { TOAST_CONFIG } from './toast-config.injection-token';
 
 @NgModule({
   declarations: [ToastComponent, ToastContainerComponent],
@@ -11,9 +13,7 @@ import { ToastContainerService } from './toast-container/toast-container.service
     CommonModule,
     OverlayModule,
   ],
-  exports: [
-    OverlayModule,
-  ],
+
   entryComponents: [
     ToastContainerComponent,
   ],
@@ -23,5 +23,15 @@ export class ToastModule {
     private toastContainerService: ToastContainerService,
   ) {
     this.toastContainerService.init();
+  }
+
+  static forRoot(config: ToastConfig): ModuleWithProviders {
+    return {
+      ngModule: ToastModule,
+      providers: [ {
+        provide: TOAST_CONFIG,
+        useValue: config,
+      }],
+    };
   }
 }

@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { ToastData } from './toast-data.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TOAST_CONFIG } from './toast-config.injection-token';
+import { ToastConfig } from './toast-config.interface';
+import { defaultToastConfig } from './default-toast-config-object';
 
 // TODO add warning when ToastModule isnt't injected in root module
 // https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12
@@ -8,8 +11,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ToastService {
-    private toasts$ = new BehaviorSubject<ToastData[]>([]);
-    private readonly toastVisibilityTimeout = 5000;
+  private toasts$ = new BehaviorSubject<ToastData[]>([]);
+
+  constructor(@Inject(TOAST_CONFIG) private config: ToastConfig ) {}
 
   // TODO shoulnt be public
   public getToasts(): Observable<ToastData[]> {
@@ -24,9 +28,12 @@ export class ToastService {
 
   public success(toastData: ToastData): void {
     this.toasts$.next([...this.toasts$.getValue(), toastData]);
-    setTimeout(() => {
-      this.removeToast(toastData);
-    }, this.toastVisibilityTimeout);
+    const timeout = this.config.timeout !== undefined ? this.config.timeout : defaultToastConfig.timeout;
+    if (timeout) {
+      setTimeout(() => {
+        this.removeToast(toastData);
+      }, timeout);
+    }
   }
 
   public info(toastData: ToastData): void {
