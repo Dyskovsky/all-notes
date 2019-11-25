@@ -1,5 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { TOAST_DATA } from './toast-data.injection-token';
+import { Component, Input } from '@angular/core';
 import { ToastData } from './toast-data.interface';
 
 @Component({
@@ -8,7 +7,5 @@ import { ToastData } from './toast-data.interface';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent {
-
-  constructor(@Inject(TOAST_DATA) public toastData: ToastData) { }
-
+  @Input() public toastData: ToastData;
 }

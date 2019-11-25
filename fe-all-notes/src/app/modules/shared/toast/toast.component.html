@@ -1,8 +1,11 @@
-<div>
+<ng-container *ngIf="toastData">
   <div>
-    {{ toastData.title}}
+    <div>
+      {{ toastData.title}}
+    </div>
+    <div>
+      {{ toastData.body }}
+    </div>
   </div>
-  <div>
-    {{ toastData.body }}
-  </div>
-</div>
+</ng-container>
+

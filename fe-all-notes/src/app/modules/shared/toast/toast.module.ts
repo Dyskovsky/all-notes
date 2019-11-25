@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from './toast.component';
-import {OverlayModule} from '@angular/cdk/overlay';
+import {OverlayModule } from '@angular/cdk/overlay';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
+import { ToastContainerService } from './toast-container/toast-container.service';
 
 @NgModule({
-  declarations: [ToastComponent],
+  declarations: [ToastComponent, ToastContainerComponent],
   imports: [
     CommonModule,
     OverlayModule,
@@ -13,7 +15,13 @@ import {OverlayModule} from '@angular/cdk/overlay';
     OverlayModule,
   ],
   entryComponents: [
-    ToastComponent,
+    ToastContainerComponent,
   ],
 })
-export class ToastModule { }
+export class ToastModule {
+  constructor(
+    private toastContainerService: ToastContainerService,
+  ) {
+    this.toastContainerService.init();
+  }
+}

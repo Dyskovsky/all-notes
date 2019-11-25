@@ -50,7 +50,7 @@ export class SingleNoteComponent implements OnInit {
   }
 
   save() {
-    this.toastService.success('sukces', 'kliknales buttona');
+    this.toastService.success({ title: 'sukces', body: 'kliknales buttona'});
 
     const { title, body } = this.noteForm.getRawValue();
     if (this.noteId) {
