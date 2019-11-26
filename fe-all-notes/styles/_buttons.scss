@@ -51,6 +51,10 @@ $clr-btn-text-hover: #f8f8f8;
   &:hover::before {
     opacity: 1;
   }
+
+  & > .mdi {
+    padding-right: 5px;
+  }
 }
 
 .btn::before {

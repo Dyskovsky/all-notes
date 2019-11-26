@@ -6,3 +6,6 @@ TODO: Toast
 TODO: AWS
 TODO: block save/show tooltip when no title in new note
 TODO: one .gitignore
+
+TODO: labels for buttons (with icons)
+TODO: maybe use @mdi/js (to not load all unused icons)

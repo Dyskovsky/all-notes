@@ -1,5 +1,7 @@
 <div class="create-new-container">
-  <a class="btn primary" routerLink="create">Create New</a>
+  <a class="btn primary" routerLink="create">
+    <em class="mdi mdi-note-plus"></em>
+    Create New</a>
 </div>
 
 <ul *ngFor="let note of notes" class="notes-container">
@@ -13,8 +15,13 @@
       {{ note.body }}
     </div>
     <footer class="card-footer">
-      <a [routerLink]="['edit', note.id]" class="btn default m-r">Edit</a>
-      <button (click)="delete(note.id)" class="btn danger">Delete</button>
+      <a [routerLink]="['edit', note.id]" class="btn default m-r">
+        <em class="mdi mdi-file-edit"></em>
+        Edit</a>
+      <button (click)="delete(note.id)" class="btn danger">
+        <em class="mdi mdi-delete"></em>
+        Delete
+      </button>
     </footer>
   </li>
 </ul>
