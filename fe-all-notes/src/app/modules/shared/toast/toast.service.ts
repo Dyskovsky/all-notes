@@ -13,7 +13,7 @@ import { defaultToastConfig } from './default-toast-config-object';
 export class ToastService {
   private toasts$ = new BehaviorSubject<ToastData[]>([]);
 
-  constructor(@Inject(TOAST_CONFIG) private config: ToastConfig ) {}
+  constructor(@Inject(TOAST_CONFIG) private config: ToastConfig) {}
 
   // TODO shoulnt be public
   public getToasts(): Observable<ToastData[]> {
