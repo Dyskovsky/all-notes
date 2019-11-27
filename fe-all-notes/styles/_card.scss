@@ -3,6 +3,7 @@ $horizontal-padding: 30px;
 
 .card {
   @include clr-soft-radial-gradient($clr-primary);
+  display: block;
   border-radius: $border-radius;
   color: $clr-text-inverse;
   margin: 20px;

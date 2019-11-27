@@ -15,3 +15,12 @@
   list-style: none;
   padding: 0;
 }
+
+.note {
+  transition: box-shadow 0.3s, filter 0.3s;
+  &:hover {
+    box-shadow: 12px 12px 12px 0px $clr-shadow;
+    filter: brightness(1.03);
+  }
+}
+

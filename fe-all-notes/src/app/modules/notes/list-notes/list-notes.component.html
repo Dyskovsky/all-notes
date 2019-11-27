@@ -5,23 +5,22 @@
 </div>
 
 <ul *ngFor="let note of notes" class="notes-container">
-  <li class="card">
-    <header class="card-header">
-      <h4 class="card-title">
-        {{ note.title }}
-      </h4>
-    </header>
-    <div class="card-content note-body-scrap">
-      {{ note.body }}
-    </div>
-    <footer class="card-footer">
-      <button (click)="delete(note.id)" class="btn danger labeled m-r">
-        <em class="mdi mdi-delete"></em>
-        Delete
-      </button>
-      <a [routerLink]="['edit', note.id]" class="btn info labeled">
-        <em class="mdi mdi-file-edit"></em>
-        Edit</a>
-    </footer>
+  <li>
+    <a  class="card note"  [routerLink]="['edit', note.id]">
+      <header class="card-header">
+        <h4 class="card-title">
+          {{ note.title }}
+        </h4>
+      </header>
+      <div class="card-content note-body-scrap">
+        {{ note.body }}
+      </div>
+      <footer class="card-footer">
+        <button (click)="delete(note.id);$event.preventDefault();$event.stopPropagation()" class="btn danger labeled m-r">
+          <em class="mdi mdi-delete"></em>
+          Delete
+        </button>
+      </footer>
+    </a>
   </li>
 </ul>
