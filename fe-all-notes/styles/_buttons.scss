@@ -3,6 +3,10 @@ $border-width: 1px;
 $animation-time: 0.3s;
 $clr-btn-text: #e8e8e8;
 $clr-btn-text-hover: #f8f8f8;
+$vertical-padding: 10px;
+$horizontal-padding: 15px;
+$font-size: 16px;
+$label-padding: 12px;
 
 @mixin custom-button($color) {
   background-image: linear-gradient(to right, $color, lighten($color, 10%));
@@ -26,13 +30,13 @@ $clr-btn-text-hover: #f8f8f8;
 }
 
 .btn {
-  padding: 12px 15px;
+  padding: $vertical-padding $horizontal-padding;
   border: 0;
   border-radius: $border-radius;
   text-decoration: none;
   box-shadow: none;
   font-family: $font-primary;
-  font-size: 16px;
+  font-size: $font-size;
   font-weight: 600;
   color: $clr-btn-text;
   min-width: 120px;
@@ -42,6 +46,8 @@ $clr-btn-text-hover: #f8f8f8;
   transition: border $animation-time, color $animation-time;
   position: relative;
   z-index: 1;
+  vertical-align: middle;
+  overflow: hidden;
 
   &:not([disabled]):hover {
     cursor: pointer;
@@ -52,8 +58,20 @@ $clr-btn-text-hover: #f8f8f8;
     opacity: 1;
   }
 
+}
+
+.btn.labeled {
+  text-align: left;
+  padding-left: $font-size + 3*$label-padding;
+
   & > .mdi {
-    padding-right: 5px;
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: $vertical-padding $label-padding;
+    text-align: center;
   }
 }
 

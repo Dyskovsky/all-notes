@@ -1,5 +1,5 @@
 <div class="create-new-container">
-  <a class="btn primary" routerLink="create">
+  <a class="btn primary labeled" routerLink="create">
     <em class="mdi mdi-note-plus"></em>
     Create New</a>
 </div>
@@ -15,13 +15,13 @@
       {{ note.body }}
     </div>
     <footer class="card-footer">
-      <a [routerLink]="['edit', note.id]" class="btn default m-r">
-        <em class="mdi mdi-file-edit"></em>
-        Edit</a>
-      <button (click)="delete(note.id)" class="btn danger">
+      <button (click)="delete(note.id)" class="btn danger labeled m-r">
         <em class="mdi mdi-delete"></em>
         Delete
       </button>
+      <a [routerLink]="['edit', note.id]" class="btn info labeled">
+        <em class="mdi mdi-file-edit"></em>
+        Edit</a>
     </footer>
   </li>
 </ul>
