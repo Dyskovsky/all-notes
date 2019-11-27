@@ -1,10 +1,50 @@
+@import "~styles/colors";
+
 :host {
   margin: 5px;
-  padding: 15px 30px;
+  padding: 15px 30px 15px 20px;
   width: 290px;
   background: #fff;
   border-width: 1px;
   border-style: solid;
   border-color: #dddddd #d6d6d6 #cfcfcf;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.11);
+  position: relative;
+}
+
+.btn-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #333;
+
+  &:hover {
+    color: #666;
+  }
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-type-icon {
+  font-size: 36px;
+  padding-right: 15px;
+  color: $clr-success;
+}
+
+.toast-title {
+  color: $clr-success;
+  font-weight: 600;
+
+  // TODO: font for header and body??
+  font-family: "Alegreya Sans SC", sans-serif;
+  padding-bottom: 10px;
+}
+
+.toast-body {
+  font-size: 12px;
+  text-align: justify;
+  color: #333;
 }

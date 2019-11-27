@@ -1,13 +1,16 @@
 <ng-container *ngIf="toastData">
-  <div>
+  <div class="toast-content">
+    <em class="mdi mdi-check-circle toast-type-icon"></em>
     <div>
-      {{ toastData.title}}
+      <div class="toast-title">
+        {{ toastData.title}}
+      </div>
+      <div class="toast-body">
+        {{ toastData.body }}
+      </div>
     </div>
-    <div>
-      {{ toastData.body }}
-    </div>
-    <button (click)="remove.emit(toastData)">
-      Remove
+    <button (click)="remove.emit(toastData)" class="btn inline btn-close">
+      <em class="mdi mdi-close"></em>
     </button>
   </div>
 </ng-container>
