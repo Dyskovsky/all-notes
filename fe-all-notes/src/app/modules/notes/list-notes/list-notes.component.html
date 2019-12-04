@@ -8,14 +8,14 @@
   <ng-container *ngIf="notes && notes.length else noNotes">
     <ul *ngFor="let note of notes" class="notes-container">
       <li>
-        <a  class="card note"  [routerLink]="['edit', note.id]">
-          <header class="card-header">
+        <a class="card note" [routerLink]="['edit', note.id]">
+          <header class="card-header thin">
             <h4 class="card-title">
               {{ note.title }}
             </h4>
             <div class="pull-right">
               <button (click)="delete(note);$event.preventDefault();$event.stopPropagation()"
-                      class="btn inline btn-remove-note">
+                class="btn inline btn-remove-note">
                 <em class="mdi mdi-delete"></em>
               </button>
             </div>

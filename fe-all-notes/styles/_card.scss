@@ -15,6 +15,10 @@ $horizontal-padding: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &.thin {
+    padding: 5px $horizontal-padding;
+  };
 }
 
 .card-title {
