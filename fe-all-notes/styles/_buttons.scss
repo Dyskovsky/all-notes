@@ -4,6 +4,7 @@ $animation-time: 0.3s;
 $clr-btn-text: #e8e8e8;
 $clr-btn-text-hover: #f8f8f8;
 $vertical-padding: 10px;
+$vertical-padding-thin: 5px;
 $horizontal-padding: 15px;
 $font-size: 16px;
 $label-padding: 12px;
@@ -80,6 +81,14 @@ $label-padding: 12px;
   border: 0;
   padding: 0;
   min-width: initial;
+}
+
+.btn.thin {
+  padding: $vertical-padding-thin $horizontal-padding;
+
+  &.labeled > .mdi {
+    padding: $vertical-padding-thin $label-padding;
+  }
 }
 
 .btn::before {

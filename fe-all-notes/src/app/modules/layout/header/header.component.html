@@ -1,0 +1,19 @@
+<div class="app-logo">
+  All Notes
+</div>
+
+<div class="user-data-container">
+
+  <ng-container *ngIf="loggedIn && profile$() | async as profile; else notLogged">
+    <div class="user-description-container">
+      <span class="user-name">{{ profile.name }}</span>
+      <button class="btn inline logout" (click)="logout()">Log out</button>
+    </div>
+    <img class="user-avatar" [src]="profile.picture">
+  </ng-container>
+
+  <ng-template #notLogged>
+    <button class="btn success thin" (click)="login()">Log in</button>
+  </ng-template>
+
+</div>

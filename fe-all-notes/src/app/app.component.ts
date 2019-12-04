@@ -15,20 +15,4 @@ export class AppComponent implements OnInit {
     this.auth.localAuthSetup();
     this.auth.handleAuthCallback();
   }
-
-  get loggedIn(): boolean {
-    return this.auth.loggedIn;
-  }
-
-  login() {
-    return this.auth.login();
-  }
-
-  logout() {
-    return this.auth.logout();
-  }
-
-  profile$() {
-    return this.auth.userProfile$;
-  }
 }
