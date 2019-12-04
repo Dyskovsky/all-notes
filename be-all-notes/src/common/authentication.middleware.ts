@@ -4,7 +4,7 @@ import { expressJwtSecret } from 'jwks-rsa';
 
 const authConfig = {
   domain: 'authorizationtest.eu.auth0.com',
-  audience: 'http://localhost:3000',
+  audience: 'http://localhost:3000', // your api identifier
 };
 
 export class AuthenticationMiddleware implements NestMiddleware {

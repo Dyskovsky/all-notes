@@ -13,18 +13,17 @@ import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
     createAuth0Client({
-      domain: 'authorizationtest.eu.auth0.com',
-      client_id: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X',
+      domain: 'authorizationtest.eu.auth0.com', // to config
+      client_id: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X', // to config
       redirect_uri: `${window.location.origin}`,
-      audience: 'http://localhost:3000'
-    }),
-  ) as Observable<Auth0Client>).pipe(
+      audience: 'http://localhost:3000', // to config
+    })) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
     catchError(err => throwError(err)),
   );
@@ -73,7 +72,7 @@ export class AuthService {
     checkAuth$.subscribe();
   }
 
-  login(redirectPath: string = '/') {
+  login(redirectPath: string = "/") {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
@@ -119,7 +118,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X',
+        client_id: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X', // to configure
         returnTo: `${window.location.origin}`,
       });
     });

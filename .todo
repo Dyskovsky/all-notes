@@ -2,7 +2,7 @@ TODO: Split on pages
 TODO: spinner should take template (to avoid error due to lack of data)
 TODO: Confirmation to delete
 TODO: AWS
-TODO: block save/show tooltip when no title in new note
+TODO: block save/show tooltip when no title in new note, add BE validation too
 TODO: one .gitignore
 TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO: block button when is waiting on response
@@ -35,11 +35,14 @@ TODO: create md notes https://www.npmjs.com/package/markdown-loader
 TODO: public directory
 TODO: swaggerConfig.json
 TODO: google analytics
+TODO: distict server for FE
 
 // authentication
 TODO: password should be hashed (like bcrypt library)
 TODO: don't use === for checking password
 TODO: rate limiting
+TODO: banner email not confirmed
+TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
 
 TODO: alt + click - insert cursor (double clik to select word)
 
@@ -62,6 +65,7 @@ TODO SSL connection do db
 https://foalts.gitbook.io // framework
 
 // npm-run-all np. "dev": "npm-run-all --parallel start server"
+// TODO .env file
 
 
 
