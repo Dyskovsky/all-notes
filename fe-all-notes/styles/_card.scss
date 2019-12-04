@@ -14,12 +14,14 @@ $horizontal-padding: 30px;
   padding: 10px $horizontal-padding;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .card-title {
   font-size: 18px;
   font-weight: 600;
   margin: 10px 0 5px;
+  flex-grow: 1;
 }
 
 .card-footer {
