@@ -4,7 +4,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { ToastContainerComponent } from './toast-container.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastContainerService {
   private overlayRef = this.overlay.create();

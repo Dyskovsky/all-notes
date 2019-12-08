@@ -1,6 +1,5 @@
 TODO: View for empty notes
 TODO: spinner when loading
-TODO: Icon to delete
 TODO: Confirmation to delete
 TODO: Toast
 TODO: AWS
@@ -8,5 +7,10 @@ TODO: block save/show tooltip when no title in new note
 TODO: one .gitignore
 TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 
-TODO: labels for buttons (with icons)
 TODO: maybe use @mdi/js (to not load all unused icons)
+TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
+
+// css in ts
+TODO: https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack#custom-webpack-config-object
+TODO: https://medium.com/angular-in-depth/angular-cli-under-the-hood-builders-demystified-v2-e73ee0f2d811?
+TODO: https://medium.com/angular-in-depth/customizing-angular-cli-build-an-alternative-to-ng-eject-v2-c655768b48cc

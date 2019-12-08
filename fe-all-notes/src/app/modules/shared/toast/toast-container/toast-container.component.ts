@@ -1,9 +1,9 @@
 import { Component, Inject, HostBinding } from '@angular/core';
-import { ToastData } from '../toast-data.interface';
 import { ToastService } from '../toast.service';
 import { Observable } from 'rxjs';
 import { TOAST_CONFIG } from '../toast-config.injection-token';
 import { ToastConfig } from '../toast-config.interface';
+import { ToastOptions } from '../toast-options.interface';
 
 @Component({
   selector: 'dk-toast-container',
@@ -11,7 +11,7 @@ import { ToastConfig } from '../toast-config.interface';
   styleUrls: ['./toast-container.component.scss'],
 })
 export class ToastContainerComponent {
-  public toastDatas$: Observable<ToastData[]> = this.toastService.getToasts();
+  public toastOptions$: Observable<ToastOptions[]> = this.toastService.getToasts();
 
   constructor(
     public toastService: ToastService,
@@ -20,7 +20,7 @@ export class ToastContainerComponent {
 
   @HostBinding('class') position = this.config.position || 'bottom-right';
 
-  public handleRemove(toastData: ToastData): void {
-    this.toastService.removeToast(toastData);
+  public handleRemove(toastOptions: ToastOptions): void {
+    this.toastService.removeToast(toastOptions);
   }
 }

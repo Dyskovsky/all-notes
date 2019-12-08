@@ -18,3 +18,43 @@
   text-align: end;
   width: 100%;
 }
+
+.primary {
+  color: $clr-primary;
+}
+
+.info {
+  color: $clr-info;
+}
+
+.success {
+  color: $clr-success;
+}
+
+.warning {
+  color: $clr-warning;
+}
+
+.danger {
+  color: $clr-danger;
+}
+
+.bg-primary {
+  background: $clr-primary;
+}
+
+.bg-info {
+  background: $clr-info;
+}
+
+.bg-success {
+  background: $clr-success;
+}
+
+.bg-warning {
+  background: $clr-warning;
+}
+
+.bg-danger {
+  background: $clr-danger;
+}

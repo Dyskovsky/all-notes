@@ -1,5 +1,5 @@
-<dk-toast *ngFor="let data of toastDatas$ | async"
-          [toastData]="data" (remove)="handleRemove($event)">
+<dk-toast *ngFor="let toast of toastOptions$ | async"
+          [toastOptions]="toast" (remove)="handleRemove($event)">
 </dk-toast>
 
 
