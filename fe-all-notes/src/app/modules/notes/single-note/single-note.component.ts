@@ -15,6 +15,7 @@ import { ToastService } from '../../shared/toast/toast.service';
 export class SingleNoteComponent implements OnInit {
   noteForm: FormGroup;
   noteId: string;
+  counter = 0;
 
   constructor(
     private notesService: NotesService,
@@ -50,24 +51,36 @@ export class SingleNoteComponent implements OnInit {
   }
 
   save() {
-    this.toastService.success({ title: 'sukces', body: 'kliknales buttona'});
-
-    const { title, body } = this.noteForm.getRawValue();
     if (this.noteId) {
-      const updateNoteDto: UpdateNoteDto = {
-        title,
-        body,
-      };
-      this.notesService.update(this.noteId, updateNoteDto).subscribe();
+      this.updateNote(this.noteForm.getRawValue());
     } else {
-      const createNoteDto: CreateNoteDto = {
-        title,
-        body,
-        type: 'text',
-      };
-      this.notesService.create(createNoteDto).subscribe(createdNote => {
-        this.noteId = createdNote.id.toString();
-      });
+      this.createNote(this.noteForm.getRawValue());
     }
+  }
+
+  private updateNote({ title, body }): void {
+    const updateNoteDto: UpdateNoteDto = {
+      title,
+      body,
+    };
+    this.notesService.update(this.noteId, updateNoteDto).subscribe(() => {
+      this.toastService.success({ title: 'The note updated', body: `All changes have been saved!`});
+    }, (error) => {
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+    });
+  }
+
+  private createNote({ title, body }): void {
+    const createNoteDto: CreateNoteDto = {
+      title,
+      body,
+      type: 'text',
+    };
+    this.notesService.create(createNoteDto).subscribe(createdNote => {
+      this.noteId = createdNote.id.toString();
+      this.toastService.success({ title: 'New note created', body: `Everything is already saved and secure!`});
+    }, (error) => {
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+    });
   }
 }
