@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastDataOptions } from './toast-data-options.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastOptions } from './toast-options.interface';
+import { ToastStoreService } from './toast-store.service';
 
 // TODO add warning when ToastModule isnt't injected in root module
 // https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12
@@ -9,18 +9,8 @@ import { ToastOptions } from './toast-options.interface';
   providedIn: 'root',
 })
 export class ToastService {
-  private toasts$ = new BehaviorSubject<ToastOptions[]>([]);
 
-  // TODO shoulnt be public
-  public getToasts(): Observable<ToastOptions[]> {
-    return this.toasts$.asObservable();
-  }
-
-  // TODO shoulnt be public
-  public removeToast(toastToRemove: ToastOptions): void {
-    const toasts = this.toasts$.getValue().filter(toastData => toastData !== toastToRemove);
-    this.toasts$.next(toasts);
-  }
+  constructor(private toastStore: ToastStoreService) {}
 
   public success(toastDataOptions: ToastDataOptions): void {
     const toastOptions = {
@@ -67,6 +57,7 @@ export class ToastService {
   }
 
   public generic(toastOptions: ToastOptions): void {
-    this.toasts$.next([...this.toasts$.getValue(), toastOptions]);
+    const toasts = [...this.toastStore.snapshot, toastOptions];
+    this.toastStore.update(toasts);
   }
 }

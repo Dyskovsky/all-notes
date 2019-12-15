@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
 import { ToastOptions } from './toast-options.interface';
 import { TOAST_CONFIG } from './toast-config.injection-token';
 import { ToastConfig } from './toast-config.interface';
+import { ToastStoreService } from './toast-store.service';
 
 @Component({
   selector: 'dk-toast',
@@ -11,13 +12,11 @@ import { ToastConfig } from './toast-config.interface';
 export class ToastComponent implements OnInit {
   @Input() public toastOptions: ToastOptions;
 
-  @Output() public remove = new EventEmitter<ToastOptions>();
-
   private top: number;
   private finalTop: number;
   private animationMovingTime: number;
 
-  constructor(private element: ElementRef, @Inject(TOAST_CONFIG) private config: ToastConfig, private renderer: Renderer2) {
+  constructor(private element: ElementRef, @Inject(TOAST_CONFIG) private config: ToastConfig, private renderer: Renderer2, private toastStore: ToastStoreService) {
   }
 
   ngOnInit() {
@@ -43,7 +42,7 @@ export class ToastComponent implements OnInit {
     if (timeout) {
       setTimeout(() => {
         this.updateTop(this.finalTop);
-        setTimeout(() => this.remove.emit(this.toastOptions), this.animationMovingTime);
+        setTimeout(() => this.removeFromStore(), this.animationMovingTime);
       }, timeout);
     }
   }
@@ -54,7 +53,7 @@ export class ToastComponent implements OnInit {
 
   handleRemove() {
     this.renderer.setStyle(this.element.nativeElement, 'opacity', '0');
-    setTimeout(() => this.remove.emit(this.toastOptions), this.config.animationOpacityTimeMs);
+    setTimeout(() => this.removeFromStore(), this.config.animationOpacityTimeMs);
   }
 
   setPosition(currentContainerHeight: number) {
@@ -62,5 +61,10 @@ export class ToastComponent implements OnInit {
       const containerPosition = this.config.position;
       this.updateTop(containerPosition.includes('bottom') ? - currentContainerHeight - this.getHeight() : currentContainerHeight);
     }
+  }
+
+  private removeFromStore(): void {
+    const toasts = this.toastStore.snapshot.filter(toastOptions => toastOptions !== this.toastOptions);
+    this.toastStore.update(toasts);
   }
 }

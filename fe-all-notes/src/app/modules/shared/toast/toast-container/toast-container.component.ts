@@ -1,10 +1,10 @@
 import { Component, Inject, HostBinding, ViewChildren, QueryList, AfterViewInit, OnDestroy } from '@angular/core';
-import { ToastService } from '../toast.service';
 import { Observable, Subscription } from 'rxjs';
 import { TOAST_CONFIG } from '../toast-config.injection-token';
 import { ToastConfig } from '../toast-config.interface';
 import { ToastOptions } from '../toast-options.interface';
 import { ToastComponent } from '../toast.component';
+import { ToastStoreService } from '../toast-store.service';
 
 @Component({
   selector: 'dk-toast-container',
@@ -12,7 +12,7 @@ import { ToastComponent } from '../toast.component';
   styleUrls: ['./toast-container.component.scss'],
 })
 export class ToastContainerComponent implements AfterViewInit, OnDestroy {
-  public toastOptions$: Observable<ToastOptions[]> = this.toastService.getToasts();
+  public toastOptions$: Observable<ToastOptions[]> = this.toastStore.get$();
 
   @ViewChildren(ToastComponent) public toastComponents: QueryList<ToastComponent>;
 
@@ -21,14 +21,9 @@ export class ToastContainerComponent implements AfterViewInit, OnDestroy {
   private toastComponentsChangesSub = new Subscription();
 
   constructor(
-    public toastService: ToastService,
+    public toastStore: ToastStoreService,
     @Inject(TOAST_CONFIG) private config: ToastConfig,
   ) { }
-
-
-  handleRemove(toastOptions: ToastOptions): void {
-    this.toastService.removeToast(toastOptions);
-  }
 
   ngAfterViewInit(): void {
     this.toastComponentsChangesSub.add(this.toastComponents.changes.subscribe((toastComponents: QueryList<ToastComponent>) => {
