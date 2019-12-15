@@ -1,9 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ToastDataOptions } from './toast-data-options.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TOAST_CONFIG } from './toast-config.injection-token';
-import { ToastConfig } from './toast-config.interface';
-import { defaultToastConfig } from './default-toast-config-object';
 import { ToastOptions } from './toast-options.interface';
 
 // TODO add warning when ToastModule isnt't injected in root module
@@ -13,8 +10,6 @@ import { ToastOptions } from './toast-options.interface';
 })
 export class ToastService {
   private toasts$ = new BehaviorSubject<ToastOptions[]>([]);
-
-  constructor(@Inject(TOAST_CONFIG) private config: ToastConfig) {}
 
   // TODO shoulnt be public
   public getToasts(): Observable<ToastOptions[]> {
@@ -73,11 +68,5 @@ export class ToastService {
 
   public generic(toastOptions: ToastOptions): void {
     this.toasts$.next([...this.toasts$.getValue(), toastOptions]);
-    const timeout = this.config.timeout !== undefined ? this.config.timeout : defaultToastConfig.timeout;
-    if (timeout) {
-      setTimeout(() => {
-        this.removeToast(toastOptions);
-      }, timeout);
-    }
   }
 }

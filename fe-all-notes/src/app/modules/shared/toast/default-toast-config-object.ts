@@ -1,6 +1,10 @@
 import { ToastConfig } from './toast-config.interface';
 
 export const defaultToastConfig: ToastConfig = {
-  timeout: 5000,
+  animationOpacityTimeMs: 300,
+  animationTimeCoefficient: 1,
   position: 'bottom-right',
+  predictedToastHeightPx: 200,
+  spacingBeetwenPx: 10,
+  timeout: 5000,
 };

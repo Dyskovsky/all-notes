@@ -1,13 +1,66 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
 import { ToastOptions } from './toast-options.interface';
+import { TOAST_CONFIG } from './toast-config.injection-token';
+import { ToastConfig } from './toast-config.interface';
 
 @Component({
   selector: 'dk-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
 })
-export class ToastComponent {
+export class ToastComponent implements OnInit {
   @Input() public toastOptions: ToastOptions;
 
   @Output() public remove = new EventEmitter<ToastOptions>();
+
+  private top: number;
+  private finalTop: number;
+  private animationMovingTime: number;
+
+  constructor(private element: ElementRef, @Inject(TOAST_CONFIG) private config: ToastConfig, private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    const horizontalContainerPosition = this.config.position.includes('left') ? 'left' : 'right';
+    const isTopContainerPosition = this.config.position.includes('top');
+
+    this.renderer.setStyle(this.element.nativeElement, horizontalContainerPosition, '0');
+    this.finalTop = isTopContainerPosition ? -this.getHeight() : this.config.spacingBeetwenPx;
+    this.updateTop(isTopContainerPosition ? window.innerHeight : -(window.innerHeight + this.config.predictedToastHeightPx));
+    this.removeAfterTimeout(this.config.timeout);
+  }
+
+  private updateTop(value: number) {
+    if (value !== this.top) {
+      this.animationMovingTime =  Math.abs(value - this.top) * this.config.animationTimeCoefficient;
+      this.top = value;
+      this.renderer.setStyle(this.element.nativeElement, 'transition', `opacity ${this.config.animationOpacityTimeMs}ms, top ${this.animationMovingTime}ms ease-out`);
+      this.renderer.setStyle(this.element.nativeElement, 'top', `${this.top}px`);
+    }
+  }
+
+  private removeAfterTimeout(timeout: number): void {
+    if (timeout) {
+      setTimeout(() => {
+        this.updateTop(this.finalTop);
+        setTimeout(() => this.remove.emit(this.toastOptions), this.animationMovingTime);
+      }, timeout);
+    }
+  }
+
+  getHeight(): number {
+    return this.element.nativeElement ? this.element.nativeElement.clientHeight + this.config.spacingBeetwenPx : 0;
+  }
+
+  handleRemove() {
+    this.renderer.setStyle(this.element.nativeElement, 'opacity', '0');
+    setTimeout(() => this.remove.emit(this.toastOptions), this.config.animationOpacityTimeMs);
+  }
+
+  setPosition(currentContainerHeight: number) {
+    if (this.top !== this.finalTop) {
+      const containerPosition = this.config.position;
+      this.updateTop(containerPosition.includes('bottom') ? - currentContainerHeight - this.getHeight() : currentContainerHeight);
+    }
+  }
 }
