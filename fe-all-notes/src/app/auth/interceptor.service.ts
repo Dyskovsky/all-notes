@@ -19,11 +19,15 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    if (req.method !== 'POST') {
-      return next.handle(req);
-    }
 
-    // TODO: only for post, check if next.handle(req) is correct
+    // fitler example
+    // if (req.method !== 'POST') {
+    //   return next.handle(req);
+    // }
+
+    // TODO Add filter for api
+    // TODO check if user is logged
+
     return this.auth.getTokenSilently$().pipe(
       mergeMap(token => {
         const tokenReq = req.clone({

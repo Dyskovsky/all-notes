@@ -24,9 +24,9 @@ export class AuthService {
       redirect_uri: `${window.location.origin}`,
       audience: 'http://localhost:3000', // to config
     })) as Observable<Auth0Client>).pipe(
-    shareReplay(1), // Every subscription receives the same shared value
-    catchError(err => throwError(err)),
-  );
+      shareReplay(1), // Every subscription receives the same shared value
+      catchError(err => throwError(err)),
+    );
   // Define observables for SDK methods that return promises by default
   // For each Auth0 SDK method, first ensure the client instance is ready
   // concatMap: Using the client instance, call SDK method; SDK returns a promise

@@ -1,16 +1,15 @@
 import { join } from 'path';
-
-import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
-import { AuthenticationMiddleware } from './common/authentication.middleware';
-
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './common/jwt.strategy';
 @Module({
   imports: [
+    PassportModule,
     NotesModule,
     TypeOrmModule.forRoot(),
     ServeStaticModule.forRoot({
@@ -18,12 +17,6 @@ import { AuthenticationMiddleware } from './common/authentication.middleware';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
-export class AppModule {
-  public configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthenticationMiddleware)
-      .forRoutes({ path: '/notes', method: RequestMethod.POST });
-  }
-}
+export class AppModule { }

@@ -8,6 +8,7 @@ import {
   Body,
   Query,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import {
@@ -22,6 +23,7 @@ import {
 import { ListAllEntities } from 'api';
 import { Note, CreateNote, UpdateNote } from './classes';
 import { ErrorResponse } from '../models';
+import { AuthGuard } from '@nestjs/passport';
 
 // TODO add logging middleware
 // ListAllEntities <-- conver to number
@@ -30,6 +32,7 @@ import { ErrorResponse } from '../models';
 
 @ApiUseTags('notes')
 @Controller('notes')
+@UseGuards(AuthGuard('jwt'))
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 

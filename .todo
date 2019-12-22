@@ -37,6 +37,7 @@ TODO: swaggerConfig.json
 TODO: google analytics
 TODO: distict server for FE
 TODO: possibility to remove note from singe-note view
+TODO: back to home page when click on title
 
 // authentication
 TODO: password should be hashed (like bcrypt library)
