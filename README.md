@@ -41,3 +41,5 @@ docker-compose up -d
 - `TYPEORM_PASSWORD=__DATABASE_PASSWORD__`
 - `TYPEORM_PORT=__DATABASE_PORT__`
 - `TYPEORM_USERNAME=__DATABASE_USER__`
+
+You can use `dotenv` for local development, see example [.env](be-all-notes/.env.example) file.

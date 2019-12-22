@@ -1,3 +1,5 @@
 /dist
 be-all-notes/dist
 node_modules
+/be-all-notes/.env
+
