@@ -1,24 +1,19 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy, VerifiedCallback, VerifyCallback, StrategyOptions } from 'passport-jwt';
+import { ExtractJwt, Strategy, VerifiedCallback, StrategyOptions } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
 import { xor } from 'lodash';
-
-const authConfig = {
-  domain: 'authorizationtest.eu.auth0.com',
-  audience: 'http://localhost:3000', // your api identifier
-};
 
 const strategyOptions: StrategyOptions = {
   secretOrKeyProvider: passportJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`,
+    jwksUri: `https://${process.env.AUTH_DOMAIN}/.well-known/jwks.json`,
   }),
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
+  audience: process.env.AUTH_AUDIENCE,
+  issuer: `https://${process.env.AUTH_DOMAIN}/`,
   ignoreExpiration: false,
 };
 
