@@ -1,10 +1,10 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ToastOptions } from './toast-options.interface';
+import { Toast } from './toast.interface';
 import { AddToast, RemoveToast } from './toast.actions';
 import { patch, append, removeItem } from '@ngxs/store/operators';
 
 export interface ToastsStateModel {
- toasts: ToastOptions[];
+ toasts: Toast[];
 }
 
 @State<ToastsStateModel>({
@@ -18,18 +18,18 @@ export class ToastsState {
     return state.toasts;
   }
 
-  @Action(AddToast) addToast(ctx: StateContext<ToastsStateModel>, { toastOptions }: AddToast) {
+  @Action(AddToast) addToast(ctx: StateContext<ToastsStateModel>, { toast }: AddToast) {
     ctx.setState(
       patch({
-        toasts: append([toastOptions]),
+        toasts: append([toast]),
       }),
     );
   }
 
-  @Action(RemoveToast) removeToast(ctx: StateContext<ToastsStateModel>, { toastOptions }: RemoveToast) {
+  @Action(RemoveToast) removeToast(ctx: StateContext<ToastsStateModel>, { toast }: RemoveToast) {
     ctx.setState(
       patch({
-        toasts: removeItem<ToastOptions>(toast => toast === toastOptions),
+        toasts: removeItem<Toast>(t => t === toast),
       }),
     );
   }

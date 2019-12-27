@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
-import { ToastOptions } from './toast-options.interface';
+import { Toast } from './toast.interface';
 import { TOAST_CONFIG } from './toast-config.injection-token';
 import { ToastConfig } from './toast-config.interface';
 import { Store } from '@ngxs/store';
@@ -11,7 +11,7 @@ import { RemoveToast } from './toast.actions';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent implements OnInit {
-  @Input() public toastOptions: ToastOptions;
+  @Input() public toast: Toast;
 
   private top: number;
   private finalTop: number;
@@ -69,6 +69,6 @@ export class ToastComponent implements OnInit {
   }
 
   private removeFromStore(): void {
-    this.store.dispatch(new RemoveToast(this.toastOptions));
+    this.store.dispatch(new RemoveToast(this.toast));
   }
 }

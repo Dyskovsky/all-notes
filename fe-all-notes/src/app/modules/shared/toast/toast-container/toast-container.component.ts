@@ -2,7 +2,7 @@ import { Component, Inject, HostBinding, ViewChildren, QueryList, AfterViewInit,
 import { Observable, Subscription } from 'rxjs';
 import { TOAST_CONFIG } from '../toast-config.injection-token';
 import { ToastConfig } from '../toast-config.interface';
-import { ToastOptions } from '../toast-options.interface';
+import { Toast } from '../toast.interface';
 import { ToastComponent } from '../toast.component';
 import { Select } from '@ngxs/store';
 import { ToastsState } from '../toasts.state';
@@ -13,7 +13,7 @@ import { ToastsState } from '../toasts.state';
   styleUrls: ['./toast-container.component.scss'],
 })
 export class ToastContainerComponent implements AfterViewInit, OnDestroy {
-  @Select(ToastsState.toasts) public toastOptions$: Observable<ToastOptions[]>;
+  @Select(ToastsState.toasts) public toasts$: Observable<Toast[]>;
 
   @ViewChildren(ToastComponent) public toastComponents: QueryList<ToastComponent>;
 

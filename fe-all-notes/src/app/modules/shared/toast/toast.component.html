@@ -1,12 +1,12 @@
-<ng-container *ngIf="toastOptions">
+<ng-container *ngIf="toast">
   <div class="toast-content">
-    <em [class]="toastOptions.view.iconClass+' ' + toastOptions.view.colorClass + ' toast-type-icon'"></em>
+    <em [class]="toast.view.iconClass+' ' + toast.view.colorClass + ' toast-type-icon'"></em>
     <div>
-      <div [class]="'toast-title '+toastOptions.view.colorClass">
-        {{ toastOptions.data.title}}
+      <div [class]="'toast-title '+ toast.view.colorClass">
+        {{ toast.data.title}}
       </div>
       <div class="toast-body">
-        {{ toastOptions.data.body }}
+        {{ toast.data.body }}
       </div>
     </div>
     <button (click)="handleRemove()" class="btn inline btn-close">
