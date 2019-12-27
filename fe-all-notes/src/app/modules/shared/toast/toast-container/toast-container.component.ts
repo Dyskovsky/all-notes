@@ -38,4 +38,8 @@ export class ToastContainerComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.toastComponentsChangesSub.unsubscribe();
   }
+
+  trackById(_, toast: Toast): number {
+    return toast.id;
+  }
 }

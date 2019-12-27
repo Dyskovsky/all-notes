@@ -69,6 +69,6 @@ export class ToastComponent implements OnInit {
   }
 
   private removeFromStore(): void {
-    this.store.dispatch(new RemoveToast(this.toast));
+    this.store.dispatch(new RemoveToast(this.toast.id));
   }
 }

@@ -1,11 +1,14 @@
-import { Toast } from './toast.interface';
+import { ToastDataOptions } from './toast-data-options.interface';
+import { ToastViewOptions } from './toast-view-options.interface';
 
 export class AddToast {
   static readonly type = '[Toast] Add';
-  constructor(public toast: Toast) {}
+  constructor(
+    public dataOptions: ToastDataOptions,
+    public viewOptions: ToastViewOptions) {}
 }
 
 export class RemoveToast {
   static readonly type = '[Toast] Remove';
-  constructor(public toast: Toast) {}
+  constructor(public id: number) {}
 }

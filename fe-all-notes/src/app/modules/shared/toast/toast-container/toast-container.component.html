@@ -1,4 +1,4 @@
-<dk-toast *ngFor="let toast of toasts$ | async"
+<dk-toast *ngFor="let toast of toasts$ | async; trackBy: trackById"
           [toast]="toast">
 </dk-toast>
 

@@ -1,4 +1,4 @@
 export interface ToastViewOptions {
-  colorClass: string;
-  iconClass: string;
+  readonly colorClass: string;
+  readonly iconClass: string;
 }

@@ -14,11 +14,18 @@ export interface ToastsStateModel {
   },
 })
 export class ToastsState {
+  private static toastIdCounter = 0;
+
   @Selector() static toasts(state: ToastsStateModel) {
     return state.toasts;
   }
 
-  @Action(AddToast) addToast(ctx: StateContext<ToastsStateModel>, { toast }: AddToast) {
+  @Action(AddToast) addToast(ctx: StateContext<ToastsStateModel>, { dataOptions, viewOptions }: AddToast) {
+    const toast: Toast = {
+      id: ++ToastsState.toastIdCounter,
+      dataOptions,
+      viewOptions,
+    };
     ctx.setState(
       patch({
         toasts: append([toast]),
@@ -26,10 +33,10 @@ export class ToastsState {
     );
   }
 
-  @Action(RemoveToast) removeToast(ctx: StateContext<ToastsStateModel>, { toast }: RemoveToast) {
+  @Action(RemoveToast) removeToast(ctx: StateContext<ToastsStateModel>, { id }: RemoveToast) {
     ctx.setState(
       patch({
-        toasts: removeItem<Toast>(t => t === toast),
+        toasts: removeItem<Toast>(toast => toast.id === id),
       }),
     );
   }
