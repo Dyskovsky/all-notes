@@ -7,12 +7,15 @@ import { ToastContainerService } from './toast-container/toast-container.service
 import { ToastConfig } from './toast-config.interface';
 import { TOAST_CONFIG } from './toast-config.injection-token';
 import { defaultToastConfig } from './default-toast-config-object';
+import { NgxsModule } from '@ngxs/store';
+import { ToastsState } from './toasts.state';
 
 @NgModule({
   declarations: [ToastComponent, ToastContainerComponent],
   imports: [
     CommonModule,
     OverlayModule,
+    NgxsModule.forFeature([ToastsState]),
   ],
 
   entryComponents: [

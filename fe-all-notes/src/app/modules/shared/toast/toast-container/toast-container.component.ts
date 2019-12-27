@@ -4,7 +4,8 @@ import { TOAST_CONFIG } from '../toast-config.injection-token';
 import { ToastConfig } from '../toast-config.interface';
 import { ToastOptions } from '../toast-options.interface';
 import { ToastComponent } from '../toast.component';
-import { ToastStoreService } from '../toast-store.service';
+import { Select } from '@ngxs/store';
+import { ToastsState } from '../toasts.state';
 
 @Component({
   selector: 'dk-toast-container',
@@ -12,7 +13,7 @@ import { ToastStoreService } from '../toast-store.service';
   styleUrls: ['./toast-container.component.scss'],
 })
 export class ToastContainerComponent implements AfterViewInit, OnDestroy {
-  public toastOptions$: Observable<ToastOptions[]> = this.toastStore.get$();
+  @Select(ToastsState.toasts) public toastOptions$: Observable<ToastOptions[]>;
 
   @ViewChildren(ToastComponent) public toastComponents: QueryList<ToastComponent>;
 
@@ -21,7 +22,6 @@ export class ToastContainerComponent implements AfterViewInit, OnDestroy {
   private toastComponentsChangesSub = new Subscription();
 
   constructor(
-    public toastStore: ToastStoreService,
     @Inject(TOAST_CONFIG) private config: ToastConfig,
   ) { }
 

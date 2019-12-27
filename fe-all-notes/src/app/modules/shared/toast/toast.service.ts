@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ToastDataOptions } from './toast-data-options.interface';
 import { ToastOptions } from './toast-options.interface';
-import { ToastStoreService } from './toast-store.service';
+import { Store } from '@ngxs/store';
+import { AddToast } from './toast.actions';
 
 // TODO add warning when ToastModule isnt't injected in root module
 // https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12
@@ -10,7 +11,7 @@ import { ToastStoreService } from './toast-store.service';
 })
 export class ToastService {
 
-  constructor(private toastStore: ToastStoreService) {}
+  constructor(private store: Store) {}
 
   public success(toastDataOptions: ToastDataOptions): void {
     const toastOptions = {
@@ -57,7 +58,6 @@ export class ToastService {
   }
 
   public generic(toastOptions: ToastOptions): void {
-    const toasts = [...this.toastStore.snapshot, toastOptions];
-    this.toastStore.update(toasts);
+    this.store.dispatch(new AddToast(toastOptions));
   }
 }

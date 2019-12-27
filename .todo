@@ -18,3 +18,10 @@ TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
 TODO: https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack#custom-webpack-config-object
 TODO: https://medium.com/angular-in-depth/angular-cli-under-the-hood-builders-demystified-v2-e73ee0f2d811?
 TODO: https://medium.com/angular-in-depth/customizing-angular-cli-build-an-alternative-to-ng-eject-v2-c655768b48cc
+
+// for test
+store.reset(myNewStateObject) will reset the entire state to the passed argument without firing any actions or life-cycle events.
+
+// actions like [Toast Api] should be done by store
+// authorization and interceptor also to store
+https://www.ngxs.io/community/projects

@@ -2,7 +2,8 @@ import { Component, Input, OnInit, ElementRef, Inject, Renderer2 } from '@angula
 import { ToastOptions } from './toast-options.interface';
 import { TOAST_CONFIG } from './toast-config.injection-token';
 import { ToastConfig } from './toast-config.interface';
-import { ToastStoreService } from './toast-store.service';
+import { Store } from '@ngxs/store';
+import { RemoveToast } from './toast.actions';
 
 @Component({
   selector: 'dk-toast',
@@ -16,7 +17,11 @@ export class ToastComponent implements OnInit {
   private finalTop: number;
   private animationMovingTime: number;
 
-  constructor(private element: ElementRef, @Inject(TOAST_CONFIG) private config: ToastConfig, private renderer: Renderer2, private toastStore: ToastStoreService) {
+  constructor(
+    private element: ElementRef,
+    private renderer: Renderer2,
+    private store: Store,
+    @Inject(TOAST_CONFIG) private config: ToastConfig) {
   }
 
   ngOnInit() {
@@ -64,7 +69,6 @@ export class ToastComponent implements OnInit {
   }
 
   private removeFromStore(): void {
-    const toasts = this.toastStore.snapshot.filter(toastOptions => toastOptions !== this.toastOptions);
-    this.toastStore.update(toasts);
+    this.store.dispatch(new RemoveToast(this.toastOptions));
   }
 }
