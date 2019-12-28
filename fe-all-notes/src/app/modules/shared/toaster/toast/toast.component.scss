@@ -1,4 +1,5 @@
 @import "~styles/colors";
+@import "~styles/variables";
 
 $clr-close-icon: $clr-text;
 $clr-close-icon-hover: lighten($clr-close-icon, 20%);
@@ -39,7 +40,7 @@ $clr-close-icon-hover: lighten($clr-close-icon, 20%);
 
 .toast-title {
   font-weight: 600;
-  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: $font-primary;
   padding-bottom: 10px;
 }
 

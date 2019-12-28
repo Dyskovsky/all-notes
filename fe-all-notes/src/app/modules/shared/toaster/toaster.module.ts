@@ -16,7 +16,6 @@ import { ToastsState } from './toasts.state';
     OverlayModule,
     NgxsModule.forFeature([ToastsState]),
   ],
-
   entryComponents: [
     ToastContainerComponent,
   ],
