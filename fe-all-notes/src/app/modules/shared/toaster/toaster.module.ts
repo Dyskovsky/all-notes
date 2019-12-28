@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from './toast/toast.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
-import { ToastContainerInitializerService } from './toast-container-initializer.service';
 import { ToastConfig } from './models/toast-config.interface';
 import { TOAST_CONFIG } from './data/toast-config.injection-token';
 import { defaultToastConfig } from './data/default-toast-config';
@@ -23,12 +22,6 @@ import { ToastsState } from './toasts.state';
   ],
 })
 export class ToasterModule {
-  constructor(
-    private toastContainerService: ToastContainerInitializerService,
-  ) {
-    this.toastContainerService.init();
-  }
-
   static forRoot(config: ToastConfig): ModuleWithProviders {
     return {
       ngModule: ToasterModule,

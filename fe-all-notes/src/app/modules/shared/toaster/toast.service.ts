@@ -3,13 +3,20 @@ import { Store } from '@ngxs/store';
 import { AddToast } from './models/toast.actions';
 import { ToastDataOptions } from './models/toast-data-options.interface';
 import { ToastViewOptions } from './models/toast-view-options.interface';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
+  private overlayRef = this.overlay.create();
+  private portal = new ComponentPortal(ToastContainerComponent);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private overlay: Overlay) {
+    this.portal.attach(this.overlayRef);
+  }
 
   public success(toastDataOptions: ToastDataOptions): void {
     const toastViewOptions = {
