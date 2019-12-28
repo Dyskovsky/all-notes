@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Inject, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 import { Toast } from '../models/toast.interface';
 import { TOAST_CONFIG } from '../data/toast-config.injection-token';
 import { ToastConfig } from '../models/toast-config.interface';
@@ -9,6 +9,7 @@ import { RemoveToast } from '../models/toast.actions';
   selector: 'dk-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent implements OnInit {
   @Input() public toast: Toast;

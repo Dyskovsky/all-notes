@@ -1,4 +1,4 @@
-import { Component, Inject, HostBinding, ViewChildren, QueryList, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Inject, HostBinding, ViewChildren, QueryList, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { TOAST_CONFIG } from '../data/toast-config.injection-token';
 import { ToastConfig } from '../models/toast-config.interface';
@@ -11,6 +11,7 @@ import { ToastsState } from '../toasts.state';
   selector: 'dk-toast-container',
   templateUrl: './toast-container.component.html',
   styleUrls: ['./toast-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastContainerComponent implements AfterViewInit, OnDestroy {
   @Select(ToastsState.toasts) public toasts$: Observable<Toast[]>;
