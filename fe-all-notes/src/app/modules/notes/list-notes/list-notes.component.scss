@@ -1,4 +1,5 @@
 @import "~styles/colors";
+@import "~styles/variables";
 
 .create-new-container {
   margin: 20px;
@@ -30,5 +31,17 @@
 
   &:hover {
     color: darken($clr-primary, 5%);
+  }
+}
+
+.no-notes-container {
+  color: $clr-text-inverse;
+  font-size: 32px;
+  font-family: $font-primary;
+  text-align: center;
+  margin: 50px auto;
+
+  &> small {
+    color: darken($clr-text-inverse, 10%);
   }
 }

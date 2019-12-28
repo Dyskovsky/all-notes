@@ -4,25 +4,35 @@
     Create New</a>
 </div>
 
-<ul *ngFor="let note of notes" class="notes-container">
-  <li>
-    <a  class="card note"  [routerLink]="['edit', note.id]">
-      <header class="card-header">
-        <h4 class="card-title">
-          {{ note.title }}
-        </h4>
-        <div class="pull-right">
-          <button (click)="delete(note);$event.preventDefault();$event.stopPropagation()"
-                  class="btn inline btn-remove-note">
-            <em class="mdi mdi-delete"></em>
-          </button>
-        </div>
-      </header>
-      <div class="card-content note-body-scrap">
-        {{ note.body }}
-      </div>
-      <footer class="card-footer">
-      </footer>
-    </a>
-  </li>
-</ul>
+<ng-container *ngIf="notes">
+  <ng-container *ngIf="notes.length else noNotes">
+    <ul *ngFor="let note of notes" class="notes-container">
+      <li>
+        <a  class="card note"  [routerLink]="['edit', note.id]">
+          <header class="card-header">
+            <h4 class="card-title">
+              {{ note.title }}
+            </h4>
+            <div class="pull-right">
+              <button (click)="delete(note);$event.preventDefault();$event.stopPropagation()"
+                      class="btn inline btn-remove-note">
+                <em class="mdi mdi-delete"></em>
+              </button>
+            </div>
+          </header>
+          <div class="card-content note-body-scrap">
+            {{ note.body }}
+          </div>
+          <footer class="card-footer">
+          </footer>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noNotes>
+    <div class="no-notes-container">
+      <div>You don't have any note!</div>
+      <small>Click "Create New" to create the first</small>
+    </div>
+  </ng-template>
+</ng-container>
