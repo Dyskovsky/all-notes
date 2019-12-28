@@ -8,8 +8,6 @@ TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconf
 TODO: block button when is waiting on response
 TODO: check on edge
 
-TODO: text justify in Toast
-
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
 
