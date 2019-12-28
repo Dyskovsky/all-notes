@@ -1,15 +1,15 @@
 TODO: View for empty notes
 TODO: spinner when loading
 TODO: Confirmation to delete
-TODO: Toast
 TODO: AWS
 TODO: block save/show tooltip when no title in new note
 TODO: one .gitignore
 TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO: block button when is waiting on response
+TODO: check on edge
+
 TODO: text justify in Toast
 TODO: all field in default config need be required
-TODO: check on edge
 
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253

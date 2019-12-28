@@ -32,7 +32,7 @@ export class ToastComponent implements OnInit {
     this.renderer.setStyle(this.element.nativeElement, horizontalContainerPosition, '0');
     this.finalTop = isTopContainerPosition ? -this.getHeight() : this.config.spacingBeetwenPx;
     this.updateTop(isTopContainerPosition ? window.innerHeight : -(window.innerHeight + this.config.predictedToastHeightPx));
-    this.removeAfterTimeout(this.config.timeout);
+    this.removeAfterTimeout(this.config.timeoutMs);
   }
 
   private updateTop(value: number) {

@@ -6,5 +6,5 @@ export const defaultToastConfig: ToastConfig = {
   position: 'bottom-right',
   predictedToastHeightPx: 200,
   spacingBeetwenPx: 10,
-  timeout: 5000,
+  timeoutMs: 5000,
 };
