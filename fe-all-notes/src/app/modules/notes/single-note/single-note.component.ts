@@ -15,7 +15,6 @@ import { ToastService } from '../../shared/toaster/toast.service';
 export class SingleNoteComponent implements OnInit {
   noteForm: FormGroup;
   noteId: string;
-  counter = 0;
 
   constructor(
     private notesService: NotesService,

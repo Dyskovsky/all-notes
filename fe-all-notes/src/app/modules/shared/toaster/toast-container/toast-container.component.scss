@@ -1,27 +1,26 @@
+$edge-distance: 5px;
+
 :host {
   position: fixed;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
   pointer-events: none;
 
   &.top-right {
-    top: 5px;
-    right: 5px;
+    top: $edge-distance;
+    right: $edge-distance;
   }
 
   &.top-left {
-    top: 5px;
-    left: 5px;
+    top: $edge-distance;
+    left: $edge-distance;
   }
 
   &.bottom-right {
-    bottom: 5px;
-    right: 5px;
+    bottom: $edge-distance;
+    right: $edge-distance;
   }
 
   &.bottom-left {
-    bottom: 5px;
-    left: 5px;
+    bottom: $edge-distance;
+    left: $edge-distance;
   }
 }

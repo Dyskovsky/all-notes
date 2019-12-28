@@ -22,3 +22,5 @@ store.reset(myNewStateObject) will reset the entire state to the passed argument
 // actions like [Toast Api] should be done by store
 // authorization and interceptor also to store
 https://www.ngxs.io/community/projects
+
+// Toast (positioning, animations, dynamic content) https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12

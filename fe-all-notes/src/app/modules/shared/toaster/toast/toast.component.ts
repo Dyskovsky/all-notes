@@ -65,7 +65,8 @@ export class ToastComponent implements OnInit {
   setPosition(currentContainerHeight: number) {
     if (this.top !== this.finalTop) {
       const containerPosition = this.config.position;
-      this.updateTop(containerPosition.includes('bottom') ? - currentContainerHeight - this.getHeight() : currentContainerHeight);
+      const targetTop = containerPosition.includes('bottom') ? - currentContainerHeight - this.getHeight() : currentContainerHeight;
+      this.updateTop(targetTop);
     }
   }
 

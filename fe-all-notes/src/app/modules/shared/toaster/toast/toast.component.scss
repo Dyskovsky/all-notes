@@ -1,10 +1,13 @@
 @import "~styles/colors";
 
+$clr-close-icon: $clr-text;
+$clr-close-icon-hover: lighten($clr-close-icon, 20%);
+
 :host {
   margin: 5px;
   padding: 15px 30px 15px 20px;
   width: 290px;
-  background: #fff;
+  background: $clr-content-bg;
   border-width: 1px;
   border-style: solid;
   border-color: #dddddd #d6d6d6 #cfcfcf;
@@ -17,10 +20,10 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  color: #333;
+  color: $clr-close-icon;
 
   &:hover {
-    color: #666;
+    color: $clr-close-icon-hover;
   }
 }
 
@@ -36,13 +39,11 @@
 
 .toast-title {
   font-weight: 600;
-
-  // TODO: font for header and body??
   font-family: "Alegreya Sans SC", sans-serif;
   padding-bottom: 10px;
 }
 
 .toast-body {
   font-size: 12px;
-  color: #333;
+  color: $clr-text;
 }

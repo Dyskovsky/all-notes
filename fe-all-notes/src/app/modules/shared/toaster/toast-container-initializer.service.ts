@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ToastContainerComponent } from './toast-container.component';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ToastContainerService {
+export class ToastContainerInitializerService {
   private overlayRef = this.overlay.create();
   private portal = new ComponentPortal(ToastContainerComponent);
 
@@ -14,7 +14,6 @@ export class ToastContainerService {
     private overlay: Overlay,
   ) {}
 
-  // TODO maybe it should be invoked in store?
   init() {
     if (!this.portal.isAttached) {
       this.portal.attach(this.overlayRef);

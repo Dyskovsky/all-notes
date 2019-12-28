@@ -4,8 +4,6 @@ import { AddToast } from './models/toast.actions';
 import { ToastDataOptions } from './models/toast-data-options.interface';
 import { ToastViewOptions } from './models/toast-view-options.interface';
 
-// TODO add warning when ToastModule isnt't injected in root module
-// https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12
 @Injectable({
   providedIn: 'root',
 })

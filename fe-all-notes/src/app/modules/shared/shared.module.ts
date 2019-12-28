@@ -5,10 +5,7 @@ import { ToasterModule } from './toaster/toaster.module';
 @NgModule({
   imports: [
     CommonModule,
-    ToasterModule.forRoot({ timeoutMs: 3000, position: 'bottom-right' }),
+    ToasterModule.forRoot({ timeoutMs: 0, position: 'bottom-right' }),
   ],
-  exports: [
-    ToasterModule,
-  ]
 })
 export class SharedModule { }
