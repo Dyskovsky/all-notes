@@ -14,6 +14,7 @@ export class ToastContainerService {
     private overlay: Overlay,
   ) {}
 
+  // TODO maybe it should be invoked in store?
   init() {
     if (!this.portal.isAttached) {
       this.portal.attach(this.overlayRef);

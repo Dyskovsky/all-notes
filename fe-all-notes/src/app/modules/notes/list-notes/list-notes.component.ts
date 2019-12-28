@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../notes/notes.service';
 import { NoteDto } from 'api';
-import { ToastService } from '../../shared/toast/toast.service';
+import { ToastService } from '../../shared/toaster/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

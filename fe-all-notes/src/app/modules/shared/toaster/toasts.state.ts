@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Toast } from './toast.interface';
-import { AddToast, RemoveToast } from './toast.actions';
+import { Toast } from './models/toast.interface';
+import { AddToast, RemoveToast } from './models/toast.actions';
 import { patch, append, removeItem } from '@ngxs/store/operators';
 
 export interface ToastsStateModel {
@@ -40,5 +40,4 @@ export class ToastsState {
       }),
     );
   }
-
 }

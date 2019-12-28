@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ElementRef, Inject, Renderer2 } from '@angular/core';
-import { Toast } from './toast.interface';
-import { TOAST_CONFIG } from './toast-config.injection-token';
-import { ToastConfig } from './toast-config.interface';
+import { Toast } from '../models/toast.interface';
+import { TOAST_CONFIG } from '../data/toast-config.injection-token';
+import { ToastConfig } from '../models/toast-config.interface';
 import { Store } from '@ngxs/store';
-import { RemoveToast } from './toast.actions';
+import { RemoveToast } from '../models/toast.actions';
 
 @Component({
   selector: 'dk-toast',

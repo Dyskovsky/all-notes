@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ToastDataOptions } from './toast-data-options.interface';
 import { Store } from '@ngxs/store';
-import { AddToast } from './toast.actions';
-import { ToastViewOptions } from './toast-view-options.interface';
+import { AddToast } from './models/toast.actions';
+import { ToastDataOptions } from './models/toast-data-options.interface';
+import { ToastViewOptions } from './models/toast-view-options.interface';
 
 // TODO add warning when ToastModule isnt't injected in root module
 // https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12

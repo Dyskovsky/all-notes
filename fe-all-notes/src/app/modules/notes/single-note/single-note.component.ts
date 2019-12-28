@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UpdateNoteDto, CreateNoteDto } from 'api';
-import { ToastService } from '../../shared/toast/toast.service';
+import { ToastService } from '../../shared/toaster/toast.service';
 
 @Component({
   selector: 'dk-single-note',

@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastComponent } from './toast.component';
+import { ToastComponent } from './toast/toast.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 import { ToastContainerService } from './toast-container/toast-container.service';
-import { ToastConfig } from './toast-config.interface';
-import { TOAST_CONFIG } from './toast-config.injection-token';
-import { defaultToastConfig } from './default-toast-config-object';
+import { ToastConfig } from './models/toast-config.interface';
+import { TOAST_CONFIG } from './data/toast-config.injection-token';
+import { defaultToastConfig } from './data/default-toast-config-object';
 import { NgxsModule } from '@ngxs/store';
 import { ToastsState } from './toasts.state';
 
@@ -22,7 +22,7 @@ import { ToastsState } from './toasts.state';
     ToastContainerComponent,
   ],
 })
-export class ToastModule {
+export class ToasterModule {
   constructor(
     private toastContainerService: ToastContainerService,
   ) {
@@ -32,7 +32,7 @@ export class ToastModule {
   static forRoot(config: ToastConfig): ModuleWithProviders {
     const filledConfig = Object.assign({}, defaultToastConfig, config);
     return {
-      ngModule: ToastModule,
+      ngModule: ToasterModule,
       providers: [ {
         provide: TOAST_CONFIG,
         useValue: filledConfig,

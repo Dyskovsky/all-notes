@@ -1,4 +1,4 @@
-import { ToastConfig } from './toast-config.interface';
+import { ToastConfig } from '../models/toast-config.interface';
 
 export const defaultToastConfig: ToastConfig = {
   animationOpacityTimeMs: 300,

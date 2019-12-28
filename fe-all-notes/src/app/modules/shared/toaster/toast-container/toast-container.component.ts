@@ -1,9 +1,9 @@
 import { Component, Inject, HostBinding, ViewChildren, QueryList, AfterViewInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { TOAST_CONFIG } from '../toast-config.injection-token';
-import { ToastConfig } from '../toast-config.interface';
-import { Toast } from '../toast.interface';
-import { ToastComponent } from '../toast.component';
+import { TOAST_CONFIG } from '../data/toast-config.injection-token';
+import { ToastConfig } from '../models/toast-config.interface';
+import { Toast } from '../models/toast.interface';
+import { ToastComponent } from '../toast/toast.component';
 import { Select } from '@ngxs/store';
 import { ToastsState } from '../toasts.state';
 

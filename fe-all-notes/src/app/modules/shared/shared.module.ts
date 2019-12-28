@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastModule } from './toast/toast.module';
+import { ToasterModule } from './toaster/toaster.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ToastModule.forRoot({ timeout: 3000, position: 'bottom-right' }),
+    ToasterModule.forRoot({ timeout: 3000, position: 'bottom-right' }),
   ],
   exports: [
-    ToastModule,
+    ToasterModule,
   ]
 })
 export class SharedModule { }
