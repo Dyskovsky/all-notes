@@ -9,7 +9,6 @@ TODO: block button when is waiting on response
 TODO: check on edge
 
 TODO: text justify in Toast
-TODO: all field in default config need be required
 
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253

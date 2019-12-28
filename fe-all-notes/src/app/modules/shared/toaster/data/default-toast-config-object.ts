@@ -1,6 +1,6 @@
 import { ToastConfig } from '../models/toast-config.interface';
 
-export const defaultToastConfig: ToastConfig = {
+export const defaultToastConfig: Required<ToastConfig> = {
   animationOpacityTimeMs: 300,
   animationTimeCoefficient: 1,
   position: 'bottom-right',
