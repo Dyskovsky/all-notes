@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UpdateNoteDto, CreateNoteDto } from 'api';
+import { ToastService } from '../../shared/toaster/toast.service';
 
 @Component({
   selector: 'dk-single-note',
@@ -19,6 +20,7 @@ export class SingleNoteComponent implements OnInit {
     private notesService: NotesService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -48,22 +50,36 @@ export class SingleNoteComponent implements OnInit {
   }
 
   save() {
-    const { title, body } = this.noteForm.getRawValue();
     if (this.noteId) {
-      const updateNoteDto: UpdateNoteDto = {
-        title,
-        body,
-      };
-      this.notesService.update(this.noteId, updateNoteDto).subscribe();
+      this.updateNote(this.noteForm.getRawValue());
     } else {
-      const createNoteDto: CreateNoteDto = {
-        title,
-        body,
-        type: 'text',
-      };
-      this.notesService.create(createNoteDto).subscribe(createdNote => {
-        this.noteId = createdNote.id.toString();
-      });
+      this.createNote(this.noteForm.getRawValue());
     }
+  }
+
+  private updateNote({ title, body }): void {
+    const updateNoteDto: UpdateNoteDto = {
+      title,
+      body,
+    };
+    this.notesService.update(this.noteId, updateNoteDto).subscribe(() => {
+      this.toastService.success({ title: 'The note updated', body: `All changes have been saved!`});
+    }, (error) => {
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+    });
+  }
+
+  private createNote({ title, body }): void {
+    const createNoteDto: CreateNoteDto = {
+      title,
+      body,
+      type: 'text',
+    };
+    this.notesService.create(createNoteDto).subscribe(createdNote => {
+      this.noteId = createdNote.id.toString();
+      this.toastService.success({ title: 'New note created', body: `Everything is already saved and secure!`});
+    }, (error) => {
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+    });
   }
 }

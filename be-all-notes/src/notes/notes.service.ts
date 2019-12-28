@@ -20,17 +20,17 @@ export class NotesService {
     return await this.noteRepository.find();
   }
 
-  async findOne(id: string): Promise<Note> {
+  async findOne(id: number): Promise<Note> {
     return await this.noteRepository.findOne(id);
   }
 
-  async update(id: string, updateNote: UpdateNoteDto): Promise<Note> {
+  async update(id: number, updateNote: UpdateNoteDto): Promise<Note> {
     const note = await this.noteRepository.findOne(id);
     this.noteRepository.merge(note, updateNote);
     return await this.noteRepository.save(note);
   }
 
-  async remove(id: string): Promise<Note> {
+  async remove(id: number): Promise<Note> {
     const note = await this.noteRepository.findOne(id);
     if (note) {
       return await this.noteRepository.remove(note);

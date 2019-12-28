@@ -1,0 +1,26 @@
+$edge-distance: 5px;
+
+:host {
+  position: fixed;
+  pointer-events: none;
+
+  &.top-right {
+    top: $edge-distance;
+    right: $edge-distance;
+  }
+
+  &.top-left {
+    top: $edge-distance;
+    left: $edge-distance;
+  }
+
+  &.bottom-right {
+    bottom: $edge-distance;
+    right: $edge-distance;
+  }
+
+  &.bottom-left {
+    bottom: $edge-distance;
+    left: $edge-distance;
+  }
+}

@@ -12,7 +12,7 @@
           {{ note.title }}
         </h4>
         <div class="pull-right">
-          <button (click)="delete(note.id);$event.preventDefault();$event.stopPropagation()"
+          <button (click)="delete(note);$event.preventDefault();$event.stopPropagation()"
                   class="btn inline btn-remove-note">
             <em class="mdi mdi-delete"></em>
           </button>

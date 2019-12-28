@@ -1,0 +1,50 @@
+@import "~styles/colors";
+@import "~styles/variables";
+
+$clr-close-icon: $clr-text;
+$clr-close-icon-hover: lighten($clr-close-icon, 20%);
+
+:host {
+  margin: 5px;
+  padding: 15px 30px 15px 20px;
+  width: 290px;
+  background: $clr-content-bg;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dddddd #d6d6d6 #cfcfcf;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.11);
+  position: absolute;
+  pointer-events: auto;
+}
+
+.btn-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: $clr-close-icon;
+
+  &:hover {
+    color: $clr-close-icon-hover;
+  }
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-type-icon {
+  font-size: 36px;
+  padding-right: 15px;
+}
+
+.toast-title {
+  font-weight: 600;
+  font-family: $font-primary;
+  padding-bottom: 10px;
+}
+
+.toast-body {
+  font-size: 12px;
+  color: $clr-text;
+}
