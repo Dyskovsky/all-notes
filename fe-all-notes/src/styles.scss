@@ -13,16 +13,14 @@
 @import "~@angular/cdk/overlay";
 @include cdk-overlay();
 
+$clr-gradient-edge: darken($clr-page-bg, 5%);
+$clr-gradient-middle: $clr-page-bg;
+
 body {
   margin: 0;
   font-family: $font-text;
-  background-image: repeating-linear-gradient(
-    45deg,
-    $clr-page-bg,
-    lighten($clr-page-bg, 2%) 20%,
-    darken($clr-page-bg, 5%) 20%
-  );
-  background-repeat: no-repeat;
-  background-position: right top;
-  background-attachment: fixed;
+  background-color: $clr-page-bg;
+  margin: 0;
+  width: 100%;
+  background: linear-gradient(90deg, $clr-gradient-edge 0%, $clr-gradient-middle 30%, $clr-gradient-middle 70%, $clr-gradient-edge 100%);
 }
