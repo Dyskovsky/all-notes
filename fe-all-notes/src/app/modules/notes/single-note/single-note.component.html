@@ -1,23 +1,25 @@
-<form [formGroup]="noteForm" (submit)="save()">
-  <div class="card">
-    <header class="card-header">
-        <input
-          formControlName="title"
-          class="card-title note-title"
-          type="text"
-          placeholder="Note title"
-        />
-    </header>
-    <div class="card-content">
-      <textarea formControlName="body" rows="15" class="note-body"> </textarea>
+<dk-loading [contentTrigger]="loaded">
+  <form [formGroup]="noteForm" (submit)="save()">
+    <div class="card">
+      <header class="card-header">
+          <input
+            formControlName="title"
+            class="card-title note-title"
+            type="text"
+            placeholder="Note title"
+          />
+      </header>
+      <div class="card-content">
+        <textarea formControlName="body" rows="15" class="note-body"> </textarea>
+      </div>
+      <footer class="card-footer">
+        <a class="btn default labeled m-r" routerLink="/">
+          <em class="mdi mdi-arrow-left-circle"></em>
+          Back</a>
+        <button class="btn success labeled" type="submit">
+          <em class="mdi mdi-content-save"></em>
+          Save</button>
+      </footer>
     </div>
-    <footer class="card-footer">
-      <a class="btn default labeled m-r" routerLink="/">
-        <em class="mdi mdi-arrow-left-circle"></em>
-        Back</a>
-      <button class="btn success labeled" type="submit">
-        <em class="mdi mdi-content-save"></em>
-        Save</button>
-    </footer>
-  </div>
-</form>
+  </form>
+</dk-loading>

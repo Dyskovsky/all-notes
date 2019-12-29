@@ -1,0 +1,37 @@
+<div *ngIf="isLoading else mainContent" class="container">
+  <div class="wrapper">
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    </ul>
+    </div>
+</div>
+
+<ng-template #mainContent>
+  <div class="main-content-container">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

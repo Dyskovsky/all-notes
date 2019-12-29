@@ -15,6 +15,7 @@ import { ToastService } from '../../shared/toaster/toast.service';
 export class SingleNoteComponent implements OnInit {
   noteForm: FormGroup;
   noteId: string;
+  loaded = false;
 
   constructor(
     private notesService: NotesService,
@@ -44,9 +45,10 @@ export class SingleNoteComponent implements OnInit {
         }),
       )
       .subscribe(note => {
-        this.noteForm.get('title').setValue(note.title);
-        this.noteForm.get('body').setValue(note.body);
-      });
+          this.noteForm.get('title').setValue(note.title);
+          this.noteForm.get('body').setValue(note.body);
+          this.loaded = true;
+        });
   }
 
   save() {

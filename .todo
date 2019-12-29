@@ -1,5 +1,5 @@
 TODO: Split on pages
-TODO: spinner when loading
+TODO: spinner should take template (to avoid error due to lack of data)
 TODO: Confirmation to delete
 TODO: AWS
 TODO: block save/show tooltip when no title in new note
@@ -24,3 +24,7 @@ store.reset(myNewStateObject) will reset the entire state to the passed argument
 https://www.ngxs.io/community/projects
 
 // Toast (positioning, animations, dynamic content) https://blog.angularindepth.com/creating-a-toast-service-with-angular-cdk-a0d35fd8cc12
+
+https://github.com/gothinkster/angular-realworld-example-app
+modules and utilities https://github.com/golevelup/nestjs
+NODE_PATH is an environment variable node uses for pretty much the same purpose TypeScript uses “baseUrl”: it looks for additional node_modules inside the directory specified by NODE_PATH

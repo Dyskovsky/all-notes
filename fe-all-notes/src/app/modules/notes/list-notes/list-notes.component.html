@@ -4,8 +4,8 @@
     Create New</a>
 </div>
 
-<ng-container *ngIf="notes">
-  <ng-container *ngIf="notes.length else noNotes">
+<dk-loading [contentTrigger]="notes">
+  <ng-container *ngIf="notes && notes.length else noNotes">
     <ul *ngFor="let note of notes" class="notes-container">
       <li>
         <a  class="card note"  [routerLink]="['edit', note.id]">
@@ -35,4 +35,4 @@
       <small>Click "Create New" to create the first</small>
     </div>
   </ng-template>
-</ng-container>
+</dk-loading>
