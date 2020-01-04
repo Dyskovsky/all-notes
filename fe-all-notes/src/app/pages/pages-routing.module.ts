@@ -3,7 +3,7 @@ import { SingleNoteComponent } from './single-note/single-note.component';
 import { ListNotesComponent } from './list-notes/list-notes.component';
 import { NgModule } from '@angular/core';
 
-const notesRoutes: Routes = [
+const pagesRoutes: Routes = [
   {
     path: 'create',
     component: SingleNoteComponent,
@@ -19,7 +19,7 @@ const notesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(notesRoutes)],
+  imports: [RouterModule.forChild(pagesRoutes)],
   exports: [RouterModule],
 })
-export class NotesRoutingModule {}
+export class PagesRoutingModule {}

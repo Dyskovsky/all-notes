@@ -4,8 +4,8 @@ import { NgModule, isDevMode } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './modules/shared/shared.module';
-import { LayoutModule } from './modules/layout/layout.module';
+import { SharedModule } from './shared/shared.module';
+import { LayoutModule } from './layout/layout.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
