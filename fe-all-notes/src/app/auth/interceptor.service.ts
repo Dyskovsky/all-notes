@@ -9,11 +9,15 @@ import { Observable, throwError } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
+
+// possible to use https://github.com/auth0/angular2-jwt
+// e.g features: throw error if expires
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InterceptorService implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) { }
 
   intercept(
     req: HttpRequest<any>,

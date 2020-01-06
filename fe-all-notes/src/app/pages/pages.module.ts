@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SingleNoteModule } from './single-note/single-note.module';
 import { ListNotesModule } from './list-notes/list-notes.module';
 import { PagesRoutingModule } from './pages-routing.module';
+import { PublicModule } from './public/public.module';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { PagesRoutingModule } from './pages-routing.module';
     PagesRoutingModule,
     ListNotesModule,
     SingleNoteModule,
+    PublicModule,
   ],
 })
 export class PagesModule { }

@@ -6,7 +6,7 @@ TODO: block save/show tooltip when no title in new note, add BE validation too
 TODO: one .gitignore
 TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO: block button when is waiting on response
-TODO: check on edge
+TODO: 404 Page
 
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
@@ -45,6 +45,8 @@ TODO: don't use === for checking password
 TODO: rate limiting
 TODO: banner email not confirmed
 TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
+TODO: check http://www.passportjs.org/packages/passport-auth0/ (BE)
+TODO: check   // Use secure cookies in production (requires SSL/TLS) sess.cookie.secure = true; express-session
 
 TODO: alt + click - insert cursor (double clik to select word)
 
@@ -69,5 +71,8 @@ https://foalts.gitbook.io // framework
 // npm-run-all np. "dev": "npm-run-all --parallel start server"
 // TODO .env file
 
-
-
+// FIX infinite loading animation on error
+// TODO toast margin depends on screen size (check)
+// FIX dash-frame when click on card!
+// Project structure https://nrwl.io/ check
+https://12factor.net/

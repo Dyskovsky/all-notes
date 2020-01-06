@@ -1,0 +1,21 @@
+@import "~styles/colors";
+@import "~styles/variables";
+
+.title {
+  font-family: $font-primary;
+  font-size: 26px;
+  font-weight: 500;
+  margin: 25px 0;
+}
+
+.container {
+  color: $clr-text-inverse;
+  margin: 10vh auto;
+}
+
+.text-container {
+  background: rgba(0,0,0, 0.2);
+  padding: 15px;
+  border-radius: 3px;
+  max-width: 500px;
+}
