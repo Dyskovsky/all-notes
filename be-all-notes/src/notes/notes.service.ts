@@ -1,41 +1,52 @@
 import { Injectable } from '@nestjs/common';
-import { CreateNoteDto, UpdateNoteDto } from 'api';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Note } from './note.entity';
 import { MongoRepository } from 'typeorm';
+import { CreateNoteDto, NoteDto, UpdateNoteDto } from './classes';
+import { noteToNoteDto } from './utils/note-to-note-dto';
 
 @Injectable()
 export class NotesService {
   constructor(
     @InjectRepository(Note)
     private readonly noteRepository: MongoRepository<Note>,
-  ) {}
+  ) { }
 
-  async create(createNote: CreateNoteDto): Promise<Note> {
+  async create(createNoteDto: CreateNoteDto, creator: string): Promise<NoteDto> {
+    const createNote = { ...createNoteDto, creator };
     const note = this.noteRepository.create(createNote);
-    return await this.noteRepository.save(note);
+    const noteEntity = await this.noteRepository.save(note);
+    return noteToNoteDto(noteEntity);
   }
 
-  async findAll(): Promise<Note[]> {
-    return await this.noteRepository.find();
+  async findAll(creator: string): Promise<NoteDto[]> {
+    const noteEnities = await this.noteRepository.find({ creator });
+    return noteEnities.map(noteToNoteDto);
   }
 
-  async findOne(id: number): Promise<Note> {
-    return await this.noteRepository.findOne(id);
+  async findOne(id: number, creator: string): Promise<NoteDto> {
+    const noteEntity = await this.noteRepository.findOne(id);
+    return noteEntity && noteEntity.creator === creator ? noteToNoteDto(noteEntity) : null;
   }
 
-  async update(id: number, updateNote: UpdateNoteDto): Promise<Note> {
-    const note = await this.noteRepository.findOne(id);
-    this.noteRepository.merge(note, updateNote);
-    return await this.noteRepository.save(note);
-  }
-
-  async remove(id: number): Promise<Note> {
-    const note = await this.noteRepository.findOne(id);
-    if (note) {
-      return await this.noteRepository.remove(note);
+  async update(id: number, updateNote: UpdateNoteDto, creator: string): Promise<NoteDto> {
+    const noteEntity = await this.noteRepository.findOne(id);
+    if (noteEntity && noteEntity.creator === creator) {
+      this.noteRepository.merge(noteEntity, updateNote);
+      const savedNoteEntity = await this.noteRepository.save(noteEntity);
+      return noteToNoteDto(savedNoteEntity);
     } else {
-      return Promise.resolve(null);
+      return null;
+    }
+  }
+
+  async remove(id: number, creator: string): Promise<NoteDto> {
+    const noteEntity = await this.noteRepository.findOne(id);
+    if (noteEntity && noteEntity.creator === creator) {
+      const removedNodeEnity = await this.noteRepository.remove(noteEntity);
+      return noteToNoteDto(removedNodeEnity);
+    } else {
+      return null;
     }
   }
 }

@@ -76,3 +76,4 @@ https://foalts.gitbook.io // framework
 // FIX dash-frame when click on card!
 // Project structure https://nrwl.io/ check
 https://12factor.net/
+// TODO check findOneAndDelete, findOneAndUpdate add creator to query

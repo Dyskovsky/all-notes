@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy, VerifiedCallback, StrategyOptions } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
 import { xor } from 'lodash';
+import { LoggedUser, JwtPayload } from 'src/models';
 
 const strategyOptions: StrategyOptions = {
   secretOrKeyProvider: passportJwtSecret({
@@ -23,21 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super(strategyOptions);
   }
 
-  async validate(payload: any, done: VerifiedCallback): Promise<any> {
-    // run only when token is valid
-    // payload: {
-    //   'http://localhost:3000/roles': ['admin'],
-    //     iss: 'https://authorizationtest.eu.auth0.com/',
-    //       sub: 'auth0|5dd2c3c134355e0f0ee91aa6',
-    //         aud:
-    //   ['http://localhost:3000',
-    //     'https://authorizationtest.eu.auth0.com/userinfo'],
-    //     iat: 1576188092,
-    //       exp: 1576274492,
-    //         azp: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X',
-    //           scope: 'openid profile email'
-    // }
-
+  async validate(payload: JwtPayload, done: VerifiedCallback): Promise<any> {
     if (
       xor(payload.scope.split(' '), ['openid', 'profile', 'email']).length > 0
     ) {
@@ -45,9 +32,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         'JWT does not possess the requires scope (`openid profile email`).',
       );
     }
-    const profile = { userId: payload.sub, username: payload.username };
+    const profile: LoggedUser = { userId: payload.sub, roles: payload[`${process.env.AUTH_AUDIENCE}/roles`] || [] };
     done(null, profile);
-    // without done or return undefined -> {"statusCode":401,"error":"Unauthorized"}
+    // without returning user -> {"statusCode":401,"error":"Unauthorized"}
     // done("error"),  { "statusCode": 500, "message": "Internal server error" }
   }
 }

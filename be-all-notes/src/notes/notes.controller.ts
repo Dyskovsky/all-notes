@@ -20,33 +20,30 @@ import {
   ApiOkResponse,
   ApiImplicitParam,
 } from '@nestjs/swagger';
-import { ListAllEntities } from 'api';
-import { Note, CreateNote, UpdateNote } from './classes';
-import { ErrorResponse } from '../models';
+import { NoteDto, CreateNoteDto, UpdateNoteDto } from './classes';
+import { ErrorResponse, LoggedUser, User } from '../models';
 import { AuthGuard } from '@nestjs/passport';
 
 // TODO add logging middleware
-// ListAllEntities <-- conver to number
-// TODO toast on remove/create/save note
 // TODO sorting/ the new one shoudl be on top
 
 @ApiUseTags('notes')
 @Controller('notes')
 @UseGuards(AuthGuard('jwt'))
 export class NotesController {
-  constructor(private readonly notesService: NotesService) {}
+  constructor(private readonly notesService: NotesService) { }
 
   @Get()
   @ApiOperation({ title: 'Get all notes' })
-  @ApiOkResponse({ type: [Note] })
-  getAll(@Query() query: ListAllEntities): Promise<Note[]> {
-    return this.notesService.findAll();
+  @ApiOkResponse({ type: [NoteDto] })
+  getAll(@User() { userId }: LoggedUser): Promise<NoteDto[]> {
+    return this.notesService.findAll(userId);
   }
 
   @Get(':id')
   @ApiOperation({ title: 'Get single note' })
   @ApiImplicitParam({ name: 'id' })
-  @ApiOkResponse({ type: Note })
+  @ApiOkResponse({ type: NoteDto })
   @ApiNotFoundResponse({ type: ErrorResponse, description: 'Not found' })
   @ApiResponse({
     status: 500,
@@ -54,25 +51,25 @@ export class NotesController {
       'Argument passed in must be a single String of 12 bytes or a string of 24 hex characters',
     type: ErrorResponse,
   })
-  async findOne(@Param('id') id): Promise<Note> {
-    const note = await this.notesService.findOne(id);
-    if (note) {
-      return note;
+  async findOne(@Param('id') id, @User() { userId }: LoggedUser): Promise<NoteDto> {
+    const noteDto = await this.notesService.findOne(id, userId);
+    if (noteDto) {
+      return noteDto;
     }
     throw new NotFoundException('Not Found', `id=${id}`);
   }
 
   @Post()
   @ApiOperation({ title: 'Create the note' })
-  @ApiCreatedResponse({ type: Note })
-  create(@Body() createNote: CreateNote): Promise<Note> {
-    return this.notesService.create(createNote);
+  @ApiCreatedResponse({ type: NoteDto })
+  create(@Body() createNoteDto: CreateNoteDto, @User() { userId }: LoggedUser): Promise<NoteDto> {
+    return this.notesService.create(createNoteDto, userId);
   }
 
   @Put(':id')
   @ApiOperation({ title: 'Update the note' })
   @ApiImplicitParam({ name: 'id' })
-  @ApiOkResponse({ type: Note })
+  @ApiOkResponse({ type: NoteDto })
   @ApiNotFoundResponse({ type: ErrorResponse, description: 'Not found' })
   @ApiResponse({
     status: 500,
@@ -82,11 +79,12 @@ export class NotesController {
   })
   async update(
     @Param('id') id,
-    @Body() updatedNote: UpdateNote,
-  ): Promise<Note> {
-    const note = await this.notesService.update(id, updatedNote);
-    if (note) {
-      return note;
+    @Body() updatedNoteDto: UpdateNoteDto,
+    @User() { userId }: LoggedUser,
+  ): Promise<NoteDto> {
+    const noteDto = await this.notesService.update(id, updatedNoteDto, userId);
+    if (noteDto) {
+      return noteDto;
     }
     throw new NotFoundException('Not Found', `id=${id}`);
   }
@@ -94,7 +92,7 @@ export class NotesController {
   @Delete(':id')
   @ApiOperation({ title: 'Delete the note' })
   @ApiImplicitParam({ name: 'id' })
-  @ApiOkResponse({ type: Note })
+  @ApiOkResponse({ type: NoteDto })
   @ApiNotFoundResponse({ type: ErrorResponse, description: 'Not found' })
   @ApiResponse({
     status: 500,
@@ -102,10 +100,10 @@ export class NotesController {
       'Argument passed in must be a single String of 12 bytes or a string of 24 hex characters',
     type: ErrorResponse,
   })
-  async remove(@Param('id') id): Promise<Note> {
-    const note = await this.notesService.remove(id);
-    if (note) {
-      return note;
+  async remove(@Param('id') id, @User() { userId }: LoggedUser): Promise<NoteDto> {
+    const noteDto = await this.notesService.remove(id, userId);
+    if (noteDto) {
+      return noteDto;
     }
     throw new NotFoundException('Not Found', `id=${id}`);
   }

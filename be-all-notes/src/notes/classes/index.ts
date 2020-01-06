@@ -1,3 +1,3 @@
-export * from './create-note';
-export * from './note';
-export * from './update-note';
+export * from './create-note.dto';
+export * from './note.dto';
+export * from './update-note.dto';
