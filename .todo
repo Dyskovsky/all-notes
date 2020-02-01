@@ -38,6 +38,7 @@ TODO: google analytics
 TODO: distict server for FE
 TODO: possibility to remove note from singe-note view
 TODO: back to home page when click on title
+TODO: find extension: different color for each project
 
 // authentication
 TODO: password should be hashed (like bcrypt library)

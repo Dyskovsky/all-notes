@@ -7,10 +7,12 @@ import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './common/jwt.strategy';
+import { ClientConfigModule } from './client-onfig/client-config.module';
 @Module({
   imports: [
     PassportModule,
     NotesModule,
+    ClientConfigModule,
     TypeOrmModule.forRoot(),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'dist/fe-all-notes'),

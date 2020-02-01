@@ -9,25 +9,30 @@ import {
   combineLatest,
   throwError,
 } from 'rxjs';
-import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
+import { tap, catchError, concatMap, shareReplay, map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ClientConfigService } from '../api/client-config/client-config.service';
+import { ClientConfigDto } from 'api';
+
+function toAuth0ClientOptions(clientConfigDto: ClientConfigDto): Auth0ClientOptions {
+  return {
+    domain: clientConfigDto.authDomain,
+    client_id: clientConfigDto.clientId,
+    redirect_uri: `${window.location.origin}`,
+    audience: clientConfigDto.authAudience,
+  };
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // Create an observable of Auth0 instance of client
-  auth0Client$ = (from(
-    createAuth0Client({
-      domain: 'authorizationtest.eu.auth0.com', // to config
-      client_id: 'Q3bjtMILZBYNZh2IB54BKMT4eXzaba3X', // to config
-      redirect_uri: `${window.location.origin}`,
-      audience: 'http://localhost:3000', // to config
-    })) as Observable<Auth0Client>).pipe(
-      shareReplay(1), // Every subscription receives the same shared value
-      catchError(err => throwError(err)),
-    );
-  // Define observables for SDK methods that return promises by default
+  auth0Client$ = this.clientConfigService.getConfig().pipe(
+    map(toAuth0ClientOptions),
+    switchMap(auth0ClientOptions => from(createAuth0Client(auth0ClientOptions)) as Observable<Auth0Client>),
+    shareReplay(1), // Every subscription receives the same shared value
+    catchError(err => throwError(err)), //??? show toast
+  );
   // For each Auth0 SDK method, first ensure the client instance is ready
   // concatMap: Using the client instance, call SDK method; SDK returns a promise
 
@@ -44,7 +49,7 @@ export class AuthService {
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private clientConfigService: ClientConfigService) { }
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
@@ -72,7 +77,7 @@ export class AuthService {
     checkAuth$.subscribe();
   }
 
-  login(redirectPath: string = "/") {
+  login(redirectPath: string = '/') {
     // A desired redirect path can be passed to login method
     // (e.g., from a route guard)
     // Ensure Auth0 client instance exists
