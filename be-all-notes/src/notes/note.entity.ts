@@ -13,4 +13,7 @@ export class Note {
 
   @Column()
   body: string;
+
+  @Column({ readonly: true })
+  creator: string;
 }

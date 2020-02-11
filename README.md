@@ -32,6 +32,7 @@ docker build -t pjo/all-notes .
 cd infrastructure/local
 docker-compose up -d
 ```
+open in browser `http://localhost:3000`
 
 ### Required Config Vars
 - `TYPEORM_CONNECTION=mongodb`
@@ -41,5 +42,8 @@ docker-compose up -d
 - `TYPEORM_PASSWORD=__DATABASE_PASSWORD__`
 - `TYPEORM_PORT=__DATABASE_PORT__`
 - `TYPEORM_USERNAME=__DATABASE_USER__`
+- `AUTH_DOMAIN=__AUTH_ISSUER__`
+- `AUTH_AUDIENCE=__YOUR_APP_ID__`
+- `AUTH_CLIENT_ID=__FE_APP_CLIENT_ID`
 
 You can use `dotenv` for local development, see example [.env](be-all-notes/.env.example) file.

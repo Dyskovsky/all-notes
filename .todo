@@ -2,11 +2,18 @@ TODO: Split on pages
 TODO: spinner should take template (to avoid error due to lack of data)
 TODO: Confirmation to delete
 TODO: AWS
-TODO: block save/show tooltip when no title in new note
+TODO: block save/show tooltip when no title in new note, add BE validation too
 TODO: one .gitignore
 TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO: block button when is waiting on response
-TODO: check on edge
+TODO: 404 Page
+TODO: BE refactor: folders for config, dto...
+TODO: better public page
+TODO: add logging middleware
+TODO: sorting/the new one note shoudl be on top
+TODO: tooltips  padding: 15px 30px 15px 16px; border-left: 6px solid #31b137;
+TODO: local env - should works without security by default
+TODO: tooltip on prod: config not found!
 
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
@@ -28,3 +35,54 @@ https://www.ngxs.io/community/projects
 https://github.com/gothinkster/angular-realworld-example-app
 modules and utilities https://github.com/golevelup/nestjs
 NODE_PATH is an environment variable node uses for pretty much the same purpose TypeScript uses “baseUrl”: it looks for additional node_modules inside the directory specified by NODE_PATH
+TODO: create *d.ts files instead of *ts in API (investigation) @types package?
+TODO: one package.json for all projects (investigation)
+TODO: check vs code workspaces (debugger config and recommended extensions -different color for each project)
+TODO: create md notes https://www.npmjs.com/package/markdown-loader
+TODO: public directory
+TODO: swaggerConfig.json
+TODO: google analytics
+TODO: distict server for FE
+TODO: possibility to remove note from singe-note view
+TODO: back to home page when click on title
+TODO: find extension: different color for each project
+TODO: check if user is logged ?? is it important?
+TODO: reorganize routing (notes should be lazy loaded?)
+TODO: refactor authService and maybe header (FE)
+
+// authentication
+TODO: password should be hashed (like bcrypt library)
+TODO: don't use === for checking password
+TODO: rate limiting
+TODO: banner email not confirmed
+TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
+TODO: check http://www.passportjs.org/packages/passport-auth0/ (BE)
+TODO: check   // Use secure cookies in production (requires SSL/TLS) sess.cookie.secure = true; express-session
+
+TODO: alt + click - insert cursor (double clik to select word)
+
+// ngrx
+TODO: https://medium.com/swlh/ngrx-data-will-change-your-life-8528736e4fc0
+
+
+// security
+https://nvd.nist.gov/
+https://cve.mitre.org/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+https://www.owasp.org
+
+db
+https://aws.amazon.com/dynamodb/
+TODO SSL connection do db
+
+// other
+https://foalts.gitbook.io // framework
+
+// npm-run-all np. "dev": "npm-run-all --parallel start server"
+
+// FIX infinite loading animation on error
+// TODO toast margin depends on screen size (check)
+// FIX dash-frame when click on card!
+// Project structure https://nrwl.io/ check
+https://12factor.net/
+// TODO check findOneAndDelete, findOneAndUpdate add creator to query

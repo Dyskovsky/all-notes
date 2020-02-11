@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NotesService } from '../notes/notes.service';
+import { NotesApiService } from '../../api/notes/notes-api.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -18,11 +18,11 @@ export class SingleNoteComponent implements OnInit {
   loaded = false;
 
   constructor(
-    private notesService: NotesService,
+    private notesApiService: NotesApiService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private toastService: ToastService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.noteForm = this.formBuilder.group({
@@ -35,7 +35,7 @@ export class SingleNoteComponent implements OnInit {
         switchMap((params: ParamMap) => {
           if (params.has('id')) {
             this.noteId = params.get('id');
-            return this.notesService.getOne(this.noteId);
+            return this.notesApiService.getOne(this.noteId);
           } else {
             return of({
               title: '',
@@ -45,10 +45,10 @@ export class SingleNoteComponent implements OnInit {
         }),
       )
       .subscribe(note => {
-          this.noteForm.get('title').setValue(note.title);
-          this.noteForm.get('body').setValue(note.body);
-          this.loaded = true;
-        });
+        this.noteForm.get('title').setValue(note.title);
+        this.noteForm.get('body').setValue(note.body);
+        this.loaded = true;
+      });
   }
 
   save() {
@@ -64,10 +64,10 @@ export class SingleNoteComponent implements OnInit {
       title,
       body,
     };
-    this.notesService.update(this.noteId, updateNoteDto).subscribe(() => {
-      this.toastService.success({ title: 'The note updated', body: `All changes have been saved!`});
+    this.notesApiService.update(this.noteId, updateNoteDto).subscribe(() => {
+      this.toastService.success({ title: 'The note updated', body: `All changes have been saved!` });
     }, (error) => {
-      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message });
     });
   }
 
@@ -77,11 +77,11 @@ export class SingleNoteComponent implements OnInit {
       body,
       type: 'text',
     };
-    this.notesService.create(createNoteDto).subscribe(createdNote => {
+    this.notesApiService.create(createNoteDto).subscribe(createdNote => {
       this.noteId = createdNote.id.toString();
-      this.toastService.success({ title: 'New note created', body: `Everything is already saved and secure!`});
+      this.toastService.success({ title: 'New note created', body: `Everything is already saved and secure!` });
     }, (error) => {
-      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message });
     });
   }
 }

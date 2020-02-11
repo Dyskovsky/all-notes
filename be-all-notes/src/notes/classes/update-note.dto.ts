@@ -1,7 +1,7 @@
-import { UpdateNoteDto } from 'api';
+import { UpdateNoteDto as IUpdateNoteDto } from 'api';
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export class UpdateNote implements UpdateNoteDto {
+export class UpdateNoteDto implements IUpdateNoteDto {
   @ApiModelProperty({
     example: 'My note',
     type: String,

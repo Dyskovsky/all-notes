@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotesService } from '../notes/notes.service';
+import { NotesApiService } from '../../api/notes/notes-api.service';
 import { NoteDto } from 'api';
 import { ToastService } from '../../shared/toaster/toast.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ListNotesComponent implements OnInit {
   notes: NoteDto[];
 
-  constructor(private notesService: NotesService, private toastService: ToastService) {}
+  constructor(private notesService: NotesApiService, private toastService: ToastService) { }
 
   ngOnInit() {
     this.getNotes();
@@ -27,9 +27,9 @@ export class ListNotesComponent implements OnInit {
   delete(noteDto: NoteDto) {
     this.notesService.delete(noteDto.id.toString()).subscribe(() => {
       this.getNotes();
-      this.toastService.success({ title: 'The note removed', body: `Access to the note titled "${noteDto.title}" is no longer possible`});
+      this.toastService.success({ title: 'The note removed', body: `Access to the note titled "${noteDto.title}" is no longer possible` });
     }, (error: HttpErrorResponse) => {
-      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message});
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message });
     });
   }
 }

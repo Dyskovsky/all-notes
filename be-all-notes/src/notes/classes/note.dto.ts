@@ -1,7 +1,7 @@
-import { NoteDto } from 'api';
+import { NoteDto as INoteDto } from 'api';
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export class Note implements NoteDto {
+export class NoteDto implements INoteDto {
   @ApiModelProperty()
   readonly id: number;
 

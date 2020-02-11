@@ -6,7 +6,7 @@ import { NoteDto, CreateNoteDto, UpdateNoteDto } from 'api';
 @Injectable({
   providedIn: 'root',
 })
-export class NotesService {
+export class NotesApiService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<NoteDto[]> {
