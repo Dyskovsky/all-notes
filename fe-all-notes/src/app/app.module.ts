@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +17,7 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     AppRoutingModule,
     NgxsModule.forRoot([], {
-      developmentMode: isDevMode(),
+      developmentMode: !environment.production,
       selectorOptions: {
         suppressErrors: false,
         injectContainerState: false,
@@ -24,7 +26,13 @@ import { AppComponent } from './app.component';
     SharedModule,
     LayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

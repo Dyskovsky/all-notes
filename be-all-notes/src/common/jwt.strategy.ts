@@ -24,7 +24,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super(strategyOptions);
   }
 
-  async validate(payload: JwtPayload, done: VerifiedCallback): Promise<any> {
+  /**
+   * This method is used to return user object in case of valid authorization.
+   *
+   * If method doesn't return user, the client receives {"statusCode":401,"error":"Unauthorized"}.
+   * If method returns error (done('error')), the client receives {"statusCode": 500, "message": "Internal server error"}.
+   */
+  async validate(payload: JwtPayload, done: VerifiedCallback): Promise<void> {
     if (
       xor(payload.scope.split(' '), ['openid', 'profile', 'email']).length > 0
     ) {
@@ -32,10 +38,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         'JWT does not possess the requires scope (`openid profile email`).',
       );
     }
-    const profile: LoggedUser = { userId: payload.sub, roles: payload[`${process.env.AUTH_AUDIENCE}/roles`] || [] };
+    const profile: LoggedUser = {
+      userId: payload.sub,
+      roles: payload[`${process.env.AUTH_AUDIENCE}/roles`] || [],
+    };
     done(null, profile);
-    // without returning user -> {"statusCode":401,"error":"Unauthorized"}
-    // done("error"),  { "statusCode": 500, "message": "Internal server error" }
   }
 }
 

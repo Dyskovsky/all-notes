@@ -11,45 +11,41 @@ import {
 } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay, map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ClientConfigService } from '../api/client-config/client-config.service';
-import { ClientConfigDto } from 'api';
-
-function toAuth0ClientOptions(clientConfigDto: ClientConfigDto): Auth0ClientOptions {
-  return {
-    domain: clientConfigDto.authDomain,
-    client_id: clientConfigDto.clientId,
-    redirect_uri: `${window.location.origin}`,
-    audience: clientConfigDto.authAudience,
-  };
-}
+import { ClientConfigApiService } from '../api/client-config/client-config-api.service';
+import { toAuth0ClientOptions } from './utils';
+import { ToastService } from '../shared/toaster/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  auth0Client$ = this.clientConfigService.getConfig().pipe(
+  auth0Client$ = this.clientConfigApiService.getConfig().pipe(
     map(toAuth0ClientOptions),
     switchMap(auth0ClientOptions => from(createAuth0Client(auth0ClientOptions)) as Observable<Auth0Client>),
     shareReplay(1), // Every subscription receives the same shared value
-    catchError(err => throwError(err)), //??? show toast
+    catchError(err => {
+      this.toastService.error({ title: 'Auth0 error', body: err });
+      return throwError(err);
+    }),
   );
   // For each Auth0 SDK method, first ensure the client instance is ready
-  // concatMap: Using the client instance, call SDK method; SDK returns a promise
-
-  isAuthenticated$ = this.auth0Client$.pipe(
+  isAuthenticated$: Observable<boolean> = this.auth0Client$.pipe(
     concatMap((client: Auth0Client) => from(client.isAuthenticated())),
     tap(res => (this.loggedIn = res)),
   );
   handleRedirectCallback$ = this.auth0Client$.pipe(
     concatMap((client: Auth0Client) => from(client.handleRedirectCallback())),
   );
-  // Create subject and public observable of user profile data
   private userProfileSubject$ = new BehaviorSubject<any>(null);
   userProfile$ = this.userProfileSubject$.asObservable();
   // Create a local property for login status
   loggedIn: boolean = null;
 
-  constructor(private router: Router, private clientConfigService: ClientConfigService) { }
+  constructor(
+    private router: Router,
+    private clientConfigApiService: ClientConfigApiService,
+    private toastService: ToastService,
+  ) { }
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
@@ -64,15 +60,7 @@ export class AuthService {
     // This should only be called on app initialization
     // Set up local authentication streams
     const checkAuth$ = this.isAuthenticated$.pipe(
-      concatMap((loggedIn: boolean) => {
-        if (loggedIn) {
-          // If authenticated, get user and set in app
-          // NOTE: you could pass options here if needed
-          return this.getUser$();
-        }
-        // If not authenticated, return stream that emits 'false'
-        return of(loggedIn);
-      }),
+      concatMap((loggedIn) => loggedIn ? this.getUser$() : of(loggedIn)),
     );
     checkAuth$.subscribe();
   }
@@ -104,13 +92,8 @@ export class AuthService {
               ? cbRes.appState.target
               : '/';
         }),
-        concatMap(() => {
-          // Redirect callback complete; get user and login status
-          return combineLatest([this.getUser$(), this.isAuthenticated$]);
-        }),
+        concatMap(() => combineLatest([this.getUser$(), this.isAuthenticated$])),
       );
-      // Subscribe to authentication completion observable
-      // Response will be an array of user and login status
       authComplete$.subscribe(([user, loggedIn]) => {
         // Redirect to target route after callback processing
         this.router.navigate([targetRoute]);

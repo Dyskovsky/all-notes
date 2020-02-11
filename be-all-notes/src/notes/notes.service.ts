@@ -26,27 +26,28 @@ export class NotesService {
 
   async findOne(id: number, creator: string): Promise<NoteDto> {
     const noteEntity = await this.noteRepository.findOne(id);
-    return noteEntity && noteEntity.creator === creator ? noteToNoteDto(noteEntity) : null;
+    if (!noteEntity || noteEntity.creator !== creator) {
+      return null;
+    }
+    return noteToNoteDto(noteEntity);
   }
 
   async update(id: number, updateNote: UpdateNoteDto, creator: string): Promise<NoteDto> {
     const noteEntity = await this.noteRepository.findOne(id);
-    if (noteEntity && noteEntity.creator === creator) {
-      this.noteRepository.merge(noteEntity, updateNote);
-      const savedNoteEntity = await this.noteRepository.save(noteEntity);
-      return noteToNoteDto(savedNoteEntity);
-    } else {
+    if (!noteEntity || noteEntity.creator !== creator) {
       return null;
     }
+    this.noteRepository.merge(noteEntity, updateNote);
+    const savedNoteEntity = await this.noteRepository.save(noteEntity);
+    return noteToNoteDto(savedNoteEntity);
   }
 
   async remove(id: number, creator: string): Promise<NoteDto> {
     const noteEntity = await this.noteRepository.findOne(id);
-    if (noteEntity && noteEntity.creator === creator) {
-      const removedNodeEnity = await this.noteRepository.remove(noteEntity);
-      return noteToNoteDto(removedNodeEnity);
-    } else {
+    if (!noteEntity || noteEntity.creator !== creator) {
       return null;
     }
+    const removedNodeEnity = await this.noteRepository.remove(noteEntity);
+    return noteToNoteDto(removedNodeEnity);
   }
 }

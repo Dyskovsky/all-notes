@@ -8,6 +8,7 @@ import { NotesModule } from './notes/notes.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './common/jwt.strategy';
 import { ClientConfigModule } from './client-onfig/client-config.module';
+
 @Module({
   imports: [
     PassportModule,

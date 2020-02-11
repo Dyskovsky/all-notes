@@ -24,9 +24,6 @@ import { NoteDto, CreateNoteDto, UpdateNoteDto } from './classes';
 import { ErrorResponse, LoggedUser, User } from '../models';
 import { AuthGuard } from '@nestjs/passport';
 
-// TODO add logging middleware
-// TODO sorting/ the new one shoudl be on top
-
 @ApiUseTags('notes')
 @Controller('notes')
 @UseGuards(AuthGuard('jwt'))

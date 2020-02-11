@@ -16,21 +16,13 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class InterceptorService implements HttpInterceptor {
+export class AuthInterceptorService implements HttpInterceptor {
   constructor(private auth: AuthService) { }
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
-
-    // fitler example
-    // if (req.method !== 'POST') {
-    //   return next.handle(req);
-    // }
-
-    // TODO Add filter for api
-    // TODO check if user is logged
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.url.includes('api/config/frontend')) {
+      return next.handle(req);
+    }
 
     return this.auth.getTokenSilently$().pipe(
       mergeMap(token => {

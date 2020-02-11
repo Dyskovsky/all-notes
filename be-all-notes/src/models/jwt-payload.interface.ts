@@ -13,6 +13,7 @@ export interface JwtPayload {
   azp?: string;
   /** Token scope (what the token has access to, e.g. 'openid profile email') */
   scope?: string;
-  /** 'http://localhost:3000/roles': ['admin']; */
+  // TODO find better way to manage user roles
+  /** example: 'http://localhost:3000/roles': ['admin']; */
   [`process.env.AUTH_AUDIENCE}/roles`]?: string[];
 }

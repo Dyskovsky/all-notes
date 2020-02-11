@@ -6,7 +6,7 @@ import { ClientConfigDto } from 'api';
 @Injectable({
   providedIn: 'root',
 })
-export class ClientConfigService {
+export class ClientConfigApiService {
 
   constructor(private http: HttpClient) { }
 
