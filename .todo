@@ -1,4 +1,3 @@
-TODO: Split on pages
 TODO: spinner should take template (to avoid error due to lack of data)
 TODO: Confirmation to delete
 TODO: AWS
@@ -35,7 +34,6 @@ https://www.ngxs.io/community/projects
 https://github.com/gothinkster/angular-realworld-example-app
 modules and utilities https://github.com/golevelup/nestjs
 NODE_PATH is an environment variable node uses for pretty much the same purpose TypeScript uses “baseUrl”: it looks for additional node_modules inside the directory specified by NODE_PATH
-TODO: create *d.ts files instead of *ts in API (investigation) @types package?
 TODO: one package.json for all projects (investigation)
 TODO: check vs code workspaces (debugger config and recommended extensions -different color for each project)
 TODO: create md notes https://www.npmjs.com/package/markdown-loader
@@ -49,11 +47,8 @@ TODO: find extension: different color for each project
 TODO: check if user is logged ?? is it important?
 TODO: reorganize routing (notes should be lazy loaded?)
 TODO: refactor authService and maybe header (FE)
-
+TODO: [BE] consider: compile to one file
 // authentication
-TODO: password should be hashed (like bcrypt library)
-TODO: don't use === for checking password
-TODO: rate limiting
 TODO: banner email not confirmed
 TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
 TODO: check http://www.passportjs.org/packages/passport-auth0/ (BE)
@@ -83,6 +78,6 @@ https://foalts.gitbook.io // framework
 // FIX infinite loading animation on error
 // TODO toast margin depends on screen size (check)
 // FIX dash-frame when click on card!
-// Project structure https://nrwl.io/ check
+// Project structure https://nrwl.io/ check (to keep common interfaces!)
 https://12factor.net/
 // TODO check findOneAndDelete, findOneAndUpdate add creator to query

@@ -30,7 +30,6 @@
     "@nestjs/serve-static": "^1.0.1",
     "@nestjs/swagger": "^3.1.0",
     "@nestjs/typeorm": "^6.0.0",
-    "api": "file:../api/api-1.1.0.tgz",
     "dotenv": "^8.2.0",
     "jwks-rsa": "^1.6.0",
     "mongodb": "^3.3.2",

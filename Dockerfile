@@ -25,16 +25,7 @@ LABEL maintainer="piod94@gmail.com"
 
 WORKDIR /usr/src/app
 
-### Build Api
-
-# only copy the package.json file. This allows us to take advantage of cached Docker layers.
-COPY ./api/package*.json ./api/
-RUN cd ./api/ && npm install
-COPY ./api/ ./api/
-RUN cd ./api/ && npm run build
-RUN cd ./api && npm pack
-# remove source code
-
+COPY ./dto ./dto/
 
 ### Build Frontend
 
@@ -61,4 +52,4 @@ USER node
 # Expose is NOT supported by Heroku
 EXPOSE 3000
 
-CMD [ "node", "be-all-notes/dist/main.js" ]
+CMD [ "node", "be-all-notes/dist/be-all-notes/src/main.js" ]

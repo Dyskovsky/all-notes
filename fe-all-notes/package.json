@@ -25,7 +25,6 @@
     "@angular/router": "~8.2.3",
     "@mdi/font": "^4.6.95",
     "@ngxs/store": "^3.6.0",
-    "api": "file:../api/api-1.1.0.tgz",
     "@auth0/auth0-spa-js": "^1.5.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.2",
