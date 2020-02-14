@@ -19,10 +19,12 @@ services:
       - TYPEORM_HOST=mongo
       - TYPEORM_DATABASE=notes
       - TYPEORM_PORT=27017
-      - TYPEORM_ENTITIES=be-all-notes/dist/**/*.entity.js
+      - TYPEORM_ENTITIES=dist/**/*.entity.js
       - AUTH_DOMAIN=authorizationtest.eu.auth0.com
-      - AUTH_AUDIENCE=http://localhost:3000 # check all-notes:3000
+      - AUTH_AUDIENCE=http://localhost:3000
       - AUTH_CLIENT_ID=${ALL_NOTES_FE_APP_ID}
+      - STATIC_CONTENT_DIRECTORY=../../../../
+      - NODE_ENV=production
     ports:
       - 3000:3000
     networks:

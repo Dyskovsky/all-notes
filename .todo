@@ -47,7 +47,9 @@ TODO: find extension: different color for each project
 TODO: check if user is logged ?? is it important?
 TODO: reorganize routing (notes should be lazy loaded?)
 TODO: refactor authService and maybe header (FE)
-TODO: [BE] consider: compile to one file
+TODO: [BE] consider: compile to one file (and remove node_modules from docker-image)
+TODO: [DOCKER] consider use another image to build
+TODO: [DOCKER] fix security warnings (docker-bench-security)
 // authentication
 TODO: banner email not confirmed
 TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
@@ -73,11 +75,18 @@ TODO SSL connection do db
 // other
 https://foalts.gitbook.io // framework
 
-// npm-run-all np. "dev": "npm-run-all --parallel start server"
+npm-run-all np. "dev": "npm-run-all --parallel start server"
 
-// FIX infinite loading animation on error
-// TODO toast margin depends on screen size (check)
-// FIX dash-frame when click on card!
-// Project structure https://nrwl.io/ check (to keep common interfaces!)
+TODO infinite loading animation on error
+TODO toast margin depends on screen size (check)
+TODO fix dash-frame when click on card!
+Project structure https://nrwl.io/ check (to keep common interfaces!)
 https://12factor.net/
-// TODO check findOneAndDelete, findOneAndUpdate add creator to query
+TODO check findOneAndDelete, findOneAndUpdate add creator to query
+TODO Fix auto forwaring on public page on prod
+TODO Remove prettierc from BE dir
+
+
+# WARNING! Your password will be stored unencrypted in /home/dyskovsky/.docker/config.json.
+# Configure a credential helper to remove this warning. See
+# https://docs.docker.com/engine/reference/commandline/login/#credentials-store

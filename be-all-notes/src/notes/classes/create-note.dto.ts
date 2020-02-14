@@ -1,4 +1,4 @@
-import { CreateNoteDto as ICreateNoteDto} from 'api';
+import { CreateNoteDto as ICreateNoteDto } from 'api';
 import { ApiModelProperty } from '@nestjs/swagger';
 
 export class CreateNoteDto implements ICreateNoteDto {

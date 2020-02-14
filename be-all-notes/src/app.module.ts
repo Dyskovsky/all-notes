@@ -16,7 +16,7 @@ import { ClientConfigModule } from './client-onfig/client-config.module';
     ClientConfigModule,
     TypeOrmModule.forRoot(),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../../../', 'dist/fe-all-notes'),
+      rootPath: join(__dirname, process.env.STATIC_CONTENT_DIRECTORY, 'dist/fe-all-notes'),
     }),
   ],
   controllers: [AppController],

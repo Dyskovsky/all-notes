@@ -1,4 +1,18 @@
 */npm-debug.log
-*/mode_modules
-dist
 .vscode
+
+# common
+*/node_modules
+*/tslint.json
+*/README.md
+
+# BE
+*/dist
+*/test
+*/.env
+*/.env.example
+*/.prettierrc
+
+# FE
+*/e2e
+

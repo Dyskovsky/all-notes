@@ -2,47 +2,49 @@
 
 # docker build -t pjo/all-notes .
 # docker run pjo/all-notes
-# docker exec -it <container id> /bin/bash
+# docker exec -it <container id> /bin/sh
 
-# TODO check othe versions like alpine, jessie, nuster-slim
-# TODO https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md
-# TODO http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
-# TODO https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-# TODO check if node_modules are not copied
-# TODO Add more files to dockerignore
-# TODO NODE_ENV=production npm start
+# NOTE https://github.com/docker/docker-bench-security
+# GUIDE https://docker-curriculum.com/ (with AWS deploy)
 
-# WARNING! Your password will be stored unencrypted in /home/dyskovsky/.docker/config.json.
-# Configure a credential helper to remove this warning. See
-# https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-
-# Cannot use npm ci --only=production because it requires package.lock.json file
-# that file leads to fail installaction because of .tgz file (api package)
-
-FROM node:10.15.3
+FROM node:10.15.3-alpine
 LABEL maintainer="piod94@gmail.com"
 
+# for node-gyp support
+# RUN apk add --no-cache --virtual .gyp python make g++ \
+#    && npm install [ your npm dependencies here ] \
+#    && apk del .gyp
 
 WORKDIR /usr/src/app
-
 COPY ./dto ./dto/
+ENV NODE_ENV production
+
 
 ### Build Frontend
 
-COPY ./fe-all-notes/package.json ./fe-all-notes/
-RUN cd ./fe-all-notes && npm install
+COPY ./fe-all-notes/package.json ./fe-all-notes/package-lock.json ./fe-all-notes/
+RUN cd ./fe-all-notes && npm ci
 COPY ./fe-all-notes/ ./fe-all-notes/
+# print files/dirs
+RUN cd ./fe-all-notes && ls -A
 RUN cd ./fe-all-notes && npm run build
-# remove source code
 
 
 ### Build Backend
 
-COPY ./be-all-notes/package.json ./be-all-notes/
-RUN cd ./be-all-notes/ && npm install
+COPY ./be-all-notes/package.json ./be-all-notes/package-lock.json ./be-all-notes/
+RUN cd ./be-all-notes/ && npm ci
 COPY ./be-all-notes/ ./be-all-notes/
+# print copied files/dirs
+RUN cd ./be-all-notes && ls -A
 RUN cd ./be-all-notes && npm run build
-# remove source code
+
+
+### Cleaning
+
+RUN rm ./dto -R
+RUN rm ./fe-all-notes -R
+RUN rm ./be-all-notes/src -R
 
 
 ### Configuration
@@ -52,4 +54,6 @@ USER node
 # Expose is NOT supported by Heroku
 EXPOSE 3000
 
-CMD [ "node", "be-all-notes/dist/be-all-notes/src/main.js" ]
+WORKDIR /usr/src/app/be-all-notes
+
+CMD [ "node", "dist/be-all-notes/src/main.js" ]

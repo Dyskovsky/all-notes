@@ -30,14 +30,14 @@ git push heroku master
 ```
 docker build -t pjo/all-notes .
 cd infrastructure/local
-docker-compose up -d
+docker-compose up -d --force-recreate
 ```
 open in browser `http://localhost:3000`
 
 ### Required Config Vars
 - `TYPEORM_CONNECTION=mongodb`
 - `TYPEORM_DATABASE=__DATABASE_NAME__`
-- `TYPEORM_ENTITIES=be-all-notes/dist/**/*.entity.js`
+- `TYPEORM_ENTITIES=dist/**/*.entity.js`
 - `TYPEORM_HOST=__DATABASE_HOST__`
 - `TYPEORM_PASSWORD=__DATABASE_PASSWORD__`
 - `TYPEORM_PORT=__DATABASE_PORT__`
@@ -45,5 +45,6 @@ open in browser `http://localhost:3000`
 - `AUTH_DOMAIN=__AUTH_ISSUER__`
 - `AUTH_AUDIENCE=__YOUR_APP_ID__`
 - `AUTH_CLIENT_ID=__FE_APP_CLIENT_ID`
+- `STATIC_CONTENT_DIRECTORY=../../../../`
 
 You can use `dotenv` for local development, see example [.env](be-all-notes/.env.example) file.
