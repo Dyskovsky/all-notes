@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { ClientConfigApiService } from '../api/client-config/client-config-api.service';
 import { toAuth0ClientOptions } from './utils';
 import { ToastService } from '../shared/toaster/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,11 @@ export class AuthService {
     switchMap(auth0ClientOptions => from(createAuth0Client(auth0ClientOptions)) as Observable<Auth0Client>),
     shareReplay(1), // Every subscription receives the same shared value
     catchError(err => {
-      this.toastService.error({ title: 'Auth0 error', body: err });
+      if (err instanceof HttpErrorResponse) {
+        this.toastService.error({ title: 'Authroziation error', body: err.message });
+      } else {
+        this.toastService.error({ title: 'Authorization error', body: JSON.stringify(err || {})});
+      }
       return throwError(err);
     }),
   );
