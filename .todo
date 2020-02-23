@@ -1,21 +1,19 @@
 TODO [FE][FEATURE] spinner should take template and observable(?) (to avoid error due to lack of data)
 TODO [FE][BUGFIX] infinite loading animation on error, expected behavior??
-
 TODO [FE][FEATURE] Confirmation to delete
 TODO [FE][BE][FEATURE] block save/show tooltip when no title in new note, add BE validation too
 TODO [FE][IMPROVEMENT] block button when is waiting on response
 TODO [FE][FEATURE] 404 Page
 TODO [FE][IMPROVEMENT] better public page
 TODO [FE][IMPROVEMENT] toasts padding: 15px 30px 15px 16px; border-left: 6px solid #31b137;
+TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
 TODO [FE][FEATURE] create md notes https://www.npmjs.com/package/markdown-loader
 TODO [FE][FEATURE] back to home page when click on title
 TODO [FE][REFACTOR] reorganize routing (notes should be lazy loaded?)
 TODO [FE][REFACTOR] refactor authService and maybe header (FE)
 TODO [FE][FEATURE] banner email not confirmed
-TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
 
 TODO [OPS] AWS
-TODO [OPS] one .gitignore
 TODO [OPS] "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO [OPS] local env - should works without security by default
 TODO [OPS] check vs code workspaces (debugger config and recommended extensions -different color for each project)
