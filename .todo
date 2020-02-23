@@ -11,9 +11,8 @@ TODO [FE][FEATURE] back to home page when click on title
 TODO [FE][REFACTOR] reorganize routing (notes should be lazy loaded?)
 TODO [FE][REFACTOR] refactor authService and maybe header (FE)
 TODO [FE][FEATURE] banner email not confirmed
-TODO [FE][BUGFIX] infinite loading animation on error
+TODO [FE][BUGFIX] infinite loading animation on error, expected behavior??
 TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
-TODO [FE][BUGFIX] fix dash-frame when click on card!
 
 TODO [OPS] AWS
 TODO [OPS] one .gitignore

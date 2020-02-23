@@ -8,6 +8,10 @@ $horizontal-padding: 30px;
   color: $clr-text-inverse;
   margin: 20px;
   box-shadow: 5px 5px 5px 0px $clr-shadow;
+
+  &:focus {
+  outline: 0;
+  }
 }
 
 .card-header {
