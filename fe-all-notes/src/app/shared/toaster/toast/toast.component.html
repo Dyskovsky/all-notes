@@ -1,8 +1,8 @@
 <ng-container *ngIf="toast">
   <div class="toast-content">
-    <em [class]="toast.viewOptions.iconClass+' ' + toast.viewOptions.colorClass + ' toast-type-icon'"></em>
+    <em [class]="toast.viewOptions.iconClass + ' toast-type-icon'"></em>
     <div>
-      <div [class]="'toast-title '+ toast.viewOptions.colorClass">
+      <div class="toast-title">
         {{ toast.dataOptions.title}}
       </div>
       <div class="toast-body">

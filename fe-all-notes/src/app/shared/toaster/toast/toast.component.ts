@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, Inject, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Inject, Renderer2, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { Toast } from '../models/toast.interface';
 import { TOAST_CONFIG } from '../data/toast-config.injection-token';
 import { ToastConfig } from '../models/toast-config.interface';
@@ -18,6 +18,10 @@ export class ToastComponent implements OnInit {
   private top: number;
   private finalTop: number;
   private animationMovingTime: number;
+
+  @HostBinding('class') get colorClass(): string {
+    return this.toast ? this.toast.viewOptions.colorClass : '';
+  }
 
   constructor(
     private element: ElementRef,
@@ -39,7 +43,7 @@ export class ToastComponent implements OnInit {
 
   private updateTop(value: number) {
     if (value !== this.top) {
-      this.animationMovingTime =  Math.abs(value - this.top) * this.config.animationTimeCoefficient;
+      this.animationMovingTime = Math.abs(value - this.top) * this.config.animationTimeCoefficient;
       this.top = value;
       this.renderer.setStyle(this.element.nativeElement, 'transition', `opacity ${this.config.animationOpacityTimeMs}ms, top ${this.animationMovingTime}ms ease-out`);
       this.renderer.setStyle(this.element.nativeElement, 'top', `${this.top}px`);

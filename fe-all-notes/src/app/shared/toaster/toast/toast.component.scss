@@ -5,16 +5,15 @@ $clr-close-icon: $clr-text;
 $clr-close-icon-hover: lighten($clr-close-icon, 20%);
 
 :host {
-  margin: 5px;
-  padding: 15px 30px 15px 20px;
+  margin: 5px 0.5vw;
+  padding: 15px 30px 15px 16px;
   width: 290px;
-  background: $clr-content-bg;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #dddddd #d6d6d6 #cfcfcf;
+  background: lighten($clr-content-bg, 50%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.11);
   position: absolute;
   pointer-events: auto;
+  border: 0;
+  border-left: 6px solid currentColor;
 }
 
 .btn-close {

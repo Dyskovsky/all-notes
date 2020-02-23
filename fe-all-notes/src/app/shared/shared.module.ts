@@ -6,7 +6,7 @@ import { LoadingComponent } from './loading/loading.component';
 @NgModule({
   imports: [
     CommonModule,
-    ToasterModule.forRoot({ timeoutMs: 3000, position: 'bottom-right' }),
+    ToasterModule.forRoot({ timeoutMs: 5000, position: 'bottom-right' }),
   ],
   declarations: [LoadingComponent],
   exports: [LoadingComponent],
