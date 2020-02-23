@@ -16,7 +16,6 @@ TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
 
 TODO [OPS] AWS
 TODO [OPS] one .gitignore
-TODO [OPS] Remove prettierc from BE dir
 TODO [OPS] "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
 TODO [OPS] local env - should works without security by default
 TODO [OPS] check vs code workspaces (debugger config and recommended extensions -different color for each project)
