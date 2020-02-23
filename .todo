@@ -14,7 +14,6 @@ TODO [FE][FEATURE] banner email not confirmed
 TODO [FE][BUGFIX] infinite loading animation on error
 TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
 TODO [FE][BUGFIX] fix dash-frame when click on card!
-TODO [FE][BUGFIX] Fix auto forwaring on public
 
 TODO [OPS] AWS
 TODO [OPS] one .gitignore

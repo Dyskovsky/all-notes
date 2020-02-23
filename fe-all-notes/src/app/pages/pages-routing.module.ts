@@ -4,11 +4,13 @@ import { ListNotesComponent } from './list-notes/list-notes.component';
 import { NgModule } from '@angular/core';
 import { PublicComponent } from './public/public.component';
 import { LoggedGuard } from './logged.guard';
+import { NotLoggedGuard } from './not-logged.guard';
 
 const pagesRoutes: Routes = [
   {
     path: 'public',
     component: PublicComponent,
+    canActivate: [NotLoggedGuard],
   },
   {
     path: 'notes',
