@@ -2,12 +2,14 @@
   <form [formGroup]="noteForm" (submit)="save()">
     <div class="card">
       <header class="card-header">
-          <input
-            formControlName="title"
-            class="card-title note-title"
-            type="text"
-            placeholder="Note title"
-          />
+        <input formControlName="title" class="card-title note-title" type="text" placeholder="Note title" />
+        <div class="pull-right">
+          <button *ngIf="noteId"
+            (click)="delete()"
+            class="btn inline btn-remove-note">
+            <em class="mdi mdi-delete"></em>
+          </button>
+        </div>
       </header>
       <div class="card-content">
         <textarea formControlName="body" rows="15" class="note-body"> </textarea>

@@ -25,15 +25,6 @@
   }
 }
 
-.btn-remove-note {
-  font-size: 24px;
-  color: darken($clr-primary, 15%);
-
-  &:hover {
-    color: darken($clr-primary, 5%);
-  }
-}
-
 .no-notes-container {
   color: $clr-text-inverse;
   font-size: 32px;

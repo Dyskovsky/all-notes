@@ -12,20 +12,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ListNotesComponent implements OnInit {
   notes: NoteDto[];
 
-  constructor(private notesService: NotesApiService, private toastService: ToastService) { }
+  constructor(private notesApiService: NotesApiService, private toastService: ToastService) { }
 
   ngOnInit() {
     this.getNotes();
   }
 
   getNotes() {
-    this.notesService.getAll().subscribe(notes => {
+    this.notesApiService.getAll().subscribe(notes => {
       this.notes = notes;
     });
   }
 
   delete(noteDto: NoteDto) {
-    this.notesService.delete(noteDto.id.toString()).subscribe(() => {
+    this.notesApiService.delete(noteDto.id.toString()).subscribe(() => {
       this.getNotes();
       this.toastService.success({ title: 'The note removed', body: `Access to the note titled "${noteDto.title}" is no longer possible` });
     }, (error: HttpErrorResponse) => {

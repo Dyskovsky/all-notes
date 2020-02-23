@@ -13,6 +13,8 @@
 @import "~@angular/cdk/overlay";
 @include cdk-overlay();
 
+@import "~styles/notes-shared";
+
 $clr-gradient-edge: darken($clr-page-bg, 5%);
 $clr-gradient-middle: $clr-page-bg;
 

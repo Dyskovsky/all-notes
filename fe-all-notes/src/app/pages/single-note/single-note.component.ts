@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotesApiService } from '../../api/notes/notes-api.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UpdateNoteDto, CreateNoteDto } from 'api';
 import { ToastService } from '../../shared/toaster/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'dk-single-note',
@@ -22,6 +23,7 @@ export class SingleNoteComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private toastService: ToastService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -51,12 +53,22 @@ export class SingleNoteComponent implements OnInit {
       });
   }
 
-  save() {
+  save(): void {
     if (this.noteId) {
       this.updateNote(this.noteForm.getRawValue());
     } else {
       this.createNote(this.noteForm.getRawValue());
     }
+  }
+
+
+  delete(): void {
+    this.notesApiService.delete(this.noteId).subscribe(() => {
+      this.toastService.success({ title: 'The note removed', body: `Access to the note titled "${this.noteForm.get('title')}" is no longer possible` });
+      this.router.navigate(['notes']);
+    }, (error: HttpErrorResponse) => {
+      this.toastService.error({ title: `${error.status} ${error.name}`, body: error.message });
+    });
   }
 
   private updateNote({ title, body }): void {
