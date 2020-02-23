@@ -5,7 +5,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 import { ToastConfig } from './models/toast-config.interface';
 import { TOAST_CONFIG } from './data/toast-config.injection-token';
-import { defaultToastConfig } from './data/default-toast-config';
 import { NgxsModule } from '@ngxs/store';
 import { ToastsState } from './toasts.state';
 
@@ -24,9 +23,9 @@ export class ToasterModule {
   static forRoot(config: ToastConfig): ModuleWithProviders {
     return {
       ngModule: ToasterModule,
-      providers: [ {
+      providers: [{
         provide: TOAST_CONFIG,
-        useValue: { ...defaultToastConfig, ...config},
+        useValue: config,
       }],
     };
   }

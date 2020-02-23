@@ -1,19 +1,49 @@
-TODO: spinner should take template (to avoid error due to lack of data)
-TODO: Confirmation to delete
-TODO: AWS
-TODO: block save/show tooltip when no title in new note, add BE validation too
-TODO: one .gitignore
-TODO "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
-TODO: block button when is waiting on response
-TODO: 404 Page
-TODO: BE refactor: folders for config, dto...
-TODO: better public page
-TODO: add logging middleware
-TODO: sorting/the new one note shoudl be on top
-TODO: tooltips  padding: 15px 30px 15px 16px; border-left: 6px solid #31b137;
-TODO: local env - should works without security by default
-TODO: tooltip on prod: config not found!
+TODO [FE][FEATURE] spinner should take template (to avoid error due to lack of data)
+TODO [FE][FEATURE] Confirmation to delete
+TODO [FE][BE][FEATURE] block save/show tooltip when no title in new note, add BE validation too
+TODO [FE][IMPROVEMENT] block button when is waiting on response
+TODO [FE][FEATURE] 404 Page
+TODO [FE][IMPROVEMENT] better public page
+TODO [FE][IMPROVEMENT] toasts padding: 15px 30px 15px 16px; border-left: 6px solid #31b137;
+TODO [FE][FEATURE] create md notes https://www.npmjs.com/package/markdown-loader
+TODO [FE][FEATURE] possibility to remove note from singe-note view
+TODO [FE][FEATURE] back to home page when click on title
+TODO [FE][REFACTOR] reorganize routing (notes should be lazy loaded?)
+TODO [FE][REFACTOR] refactor authService and maybe header (FE)
+TODO [FE][FEATURE] banner email not confirmed
+TODO [FE][BUGFIX] infinite loading animation on error
+TODO [FE][IMPROVEMENT] toast margin depends on screen size (check)
+TODO [FE][BUGFIX] fix dash-frame when click on card!
+TODO [FE][BUGFIX] Fix auto forwaring on public
 
+TODO [OPS] AWS
+TODO [OPS] one .gitignore
+TODO [OPS] Remove prettierc from BE dir
+TODO [OPS] "start": "ts-node -r tsconfig-paths/register src/main.ts", checck if tsconfig is required
+TODO [OPS] local env - should works without security by default
+TODO [OPS] check vs code workspaces (debugger config and recommended extensions -different color for each project)
+TODO [OPS] one package.json for all projects (investigation)
+TODO [OPS] distict server for FE
+TODO [OPS] google analytics
+TODO [OPS] find extension: different color for each project
+TODO [OPS] swaggerConfig.json
+
+TODO [BE][REFACTOR] refactor: folders for config, dto...
+TODO [BE][FEATURE] add logging middleware
+TODO [BE] sorting/the new one note shoudl be on top
+TODO [BE] consider: compile to one file (and remove node_modules from docker-image)
+TODO [BE] check findOneAndDelete, findOneAndUpdate add creator to query
+
+TODO [DOCKER] consider use another image to build
+TODO [DOCKER] fix security warnings (docker-bench-security)
+TODO [DOCKER] # WARNING! Your password will be stored unencrypted in /home/dyskovsky/.docker/config.json.
+# Configure a credential helper to remove this warning. See
+# https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+
+TODO: [???] public directory
+
+TODO: check if user is logged ?? is it important?
 TODO: maybe use @mdi/js (to not load all unused icons)
 TODO: global scss variables https://github.com/angular/angular-cli/issues/1253
 
@@ -34,29 +64,14 @@ https://www.ngxs.io/community/projects
 https://github.com/gothinkster/angular-realworld-example-app
 modules and utilities https://github.com/golevelup/nestjs
 NODE_PATH is an environment variable node uses for pretty much the same purpose TypeScript uses “baseUrl”: it looks for additional node_modules inside the directory specified by NODE_PATH
-TODO: one package.json for all projects (investigation)
-TODO: check vs code workspaces (debugger config and recommended extensions -different color for each project)
-TODO: create md notes https://www.npmjs.com/package/markdown-loader
-TODO: public directory
-TODO: swaggerConfig.json
-TODO: google analytics
-TODO: distict server for FE
-TODO: possibility to remove note from singe-note view
-TODO: back to home page when click on title
-TODO: find extension: different color for each project
-TODO: check if user is logged ?? is it important?
-TODO: reorganize routing (notes should be lazy loaded?)
-TODO: refactor authService and maybe header (FE)
-TODO: [BE] consider: compile to one file (and remove node_modules from docker-image)
-TODO: [DOCKER] consider use another image to build
-TODO: [DOCKER] fix security warnings (docker-bench-security)
+
+
 // authentication
-TODO: banner email not confirmed
 TODO: check implementation with auth0-js @auth0/angular-jwt instead of @auth0/auth0-spa-js, more: https://auth0.com/blog/full-stack-typescript-apps-part-2-developing-frontend-angular-apps
 TODO: check http://www.passportjs.org/packages/passport-auth0/ (BE)
 TODO: check   // Use secure cookies in production (requires SSL/TLS) sess.cookie.secure = true; express-session
 
-TODO: alt + click - insert cursor (double clik to select word)
+alt + click - insert cursor (double clik to select word)
 
 // ngrx
 TODO: https://medium.com/swlh/ngrx-data-will-change-your-life-8528736e4fc0
@@ -77,16 +92,6 @@ https://foalts.gitbook.io // framework
 
 npm-run-all np. "dev": "npm-run-all --parallel start server"
 
-TODO infinite loading animation on error
-TODO toast margin depends on screen size (check)
-TODO fix dash-frame when click on card!
+
 Project structure https://nrwl.io/ check (to keep common interfaces!)
 https://12factor.net/
-TODO check findOneAndDelete, findOneAndUpdate add creator to query
-TODO Fix auto forwaring on public page on prod
-TODO Remove prettierc from BE dir
-
-
-# WARNING! Your password will be stored unencrypted in /home/dyskovsky/.docker/config.json.
-# Configure a credential helper to remove this warning. See
-# https://docs.docker.com/engine/reference/commandline/login/#credentials-store

@@ -4,6 +4,7 @@ import { TOAST_CONFIG } from '../data/toast-config.injection-token';
 import { ToastConfig } from '../models/toast-config.interface';
 import { Store } from '@ngxs/store';
 import { RemoveToast } from '../models/toast.actions';
+import { defaultToastConfig } from '../data/default-toast-config';
 
 @Component({
   selector: 'dk-toast',
@@ -23,6 +24,7 @@ export class ToastComponent implements OnInit {
     private renderer: Renderer2,
     private store: Store,
     @Inject(TOAST_CONFIG) private config: ToastConfig) {
+    this.config = { ...defaultToastConfig, ...this.config };
   }
 
   ngOnInit() {
